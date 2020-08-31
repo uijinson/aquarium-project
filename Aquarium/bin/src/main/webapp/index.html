@@ -1,0 +1,156 @@
+index.html
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+	<h3>직원 로그인 화면</h3>
+	
+	<br><hr><br>
+
+	<a href=" https://www.w3schools.com/html/html5_webstorage.asp">1. web storage 학습 </a> 
+	
+	<br><hr><br>
+	
+	<div id="app">
+		2. {{message}}<br><br>
+		
+		아이디 : <input type="fid" name="fid" id="fid" v-model="fid" >
+		비번 : <input type="password" name="login" id="pass" v-model="pw" > 
+		<input type="submit" @click="login" value="로그인" id="login">
+		<button id="logout" @click="logout">로그아웃</button>
+		
+		<br><hr><br>
+	
+		<button id="getInfo" @click="getInfo">상세 정보 확인</button>
+	
+		<br><hr><br>
+		
+		<table>
+			<tr><td id="status">1. 로그인 or 로그아웃 상태  : {{status}} </td></tr>
+			<tr><td id="token">2. 토큰 정보 : {{token}} </td></tr>
+			<tr><td id="info">3. 로그인 후 검색된 직원 정보  : {{info}} </td></tr>
+			<tr><td id="detailInfo">4. 로그인 후 상세 정보 보기  : {{detailInfo}} </td></tr>
+		</table>
+		
+		<br><hr><br>
+		<a v-if="result" href="fish-service.html">인증된 직원만 사용하는 서비스</a>
+	</div>
+	
+	<script>
+	
+		//브라우저 메모리인 Session Storage에 JWT 저장 예정
+		const storage = window.sessionStorage;
+		
+		 var app = new Vue({
+		      el: '#app',
+		      data: {
+			       fid : "",
+			       pw : "",
+			       message: "로그인 하세요",
+			       status: "",
+			       token: "",
+			       info: "",
+			       detailInfo: "",
+			       result: false
+		      },
+		      methods:{
+		    	  setInfo(status, token, info){
+		    		  this.status = status;
+		    		  this.token = token;
+		    		  this.info = info;
+		    		  this.result = true;
+		    	  },
+		    	  setDetailInfo(status, token, info, detailInfo){
+		    		  this.status = status;
+		    		  this.token = token;
+		    		  this.info = info;
+		    		  this.detailInfo = detailInfo;
+		    	  },
+		    	  logout(){
+		    		  storage.setItem("jwt-auth-token", "");
+		    		  storage.setItem("login_fid", "");
+		    		  
+		    		  this.fid = "";
+		    		  this.pw = "";
+		    		  
+		    		  this.message = "로그인해 주세요";
+		    		  this.result = false;
+		    		  
+		    		  this.setDetailInfo("로그아웃 성공", "", "");
+		    		  
+		    	  },
+		    	  getInfo(){
+		    		  axios.post("/api/info", {
+		    				fid : this.fid,
+		    				pw : this.pw
+		    		 	}, 
+		    		 	{
+		    				headers : {
+		    					"jwt-auth-token" : storage.getItem("jwt-auth-token")
+		    			    }
+		    		  	}
+		    		  ).then(res => {
+		    			  this.setDetailInfo( "정보 조회 성공", storage.getItem("jwt-auth-token"), this.info, JSON.stringify(res.data));
+		    		  }).catch(e => {
+		    			  this.setDetailInfo("정보 조회 실패", "", e.response.data.msg);
+		    	 	  });
+		    	  },
+		    	  login(){
+		    		   storage.setItem("jwt-auth-token", "");
+			    	   storage.setItem("login_fid", "");
+			    	   
+			    	   axios.post("/api/logincheck/signin", {
+		    					fid : this.fid,
+		    					pw : this.pw
+		    				}).then(res =>{
+		    					
+		    					if(res.data.status){
+		    						
+		    						this.fid = "";
+		    			    		this.pw = "";
+			    					this.message = res.data.data.fid + "로 로그인 되었습니다";
+			    					
+			    					console.dir(res.headers["jwt-auth-token"]);
+			    					
+			    					//화면에 정보 출력
+			    					this.setInfo("로그인 성공", res.headers["jwt-auth-token"], JSON.stringify(res.data.data));
+			    					
+			    					//토큰 & fid 정보 저장
+			    					storage.setItem("jwt-auth-token", res.headers["jwt-auth-token"]);
+			    					storage.setItem("login_fid", res.data.data.fid);
+			    				
+		    					}else{
+			    			
+		    						this.setInfo("", "", "");
+			    					this.message = "로그인 하세요";
+			    					alert("입력 정보를 확인");
+			    				
+		    					}
+		    					
+		    			   }).catch(e => {
+		    			        this.setInfo("실패", "", JSON.stringify(e.response || e.message));
+		    	 	       });
+		    	   },
+		    	   init(){
+		    		   if(storage.getItem("jwt-auth-token")){
+		    			   this.message = storage.getItem("login_fid") + "로 로그인 되었습니다";
+		    		   }else{
+		    			   storage.setItem("jwt-auth-token", "");
+		    		   }
+		    	   }//init()
+		      }, mounted(){
+		    	  this.init();
+		      }
+		 });
+		     
+	</script>
+	
+</body>
+</html>
