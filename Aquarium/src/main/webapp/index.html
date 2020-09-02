@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-
+​
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,19 +9,20 @@
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+​
 </head>
-
+​
 <body>
     <video id="video" preload="auto" autoplay="true" loop="loop" muted="muted" volume="0">
         <source src="source/Jellyfish.mp4">
     </video>
-
+​
     <div style="position: relative;top: -700px; z-index: 2; width: 300; height: 100;">
         <center>
             <h1 style="color:#cccccc; font-size:90px;">AQUARIUM</h1>
         </center>
     </div>
-
+​
     <div id="app">
     <div style="position: relative; top: -400px; z-index: 2;width: 300; height: 100;">
         <center><button  @click="signInformView" style=" border-radius: 25px; border: none;
@@ -32,27 +33,27 @@
         회원가입</button></center>
     </div>
     <div id="signInForm" v-if="signInForm" class="modal">
-
+​
         <form class="modal-content animate" method="get">
             <div class="imgcontainer">
                 <span @click="signInformView" class="close"
                     title="Close Modal">&times;</span>
                 <img src="source/penguin-1196947_1920.jpg" alt="Avatar" class="avatar">
             </div>
-
+​
             <div class="container">
                 <label for="uname"><b>Username</b></label>
-                <input type="text" placeholder="Enter Username" v-model="fid" name="fid" required>
-
+                <input type="text" placeholder="Enter Username" v-model="memId" name="memId" required>
+​
                 <label for="psw"><b>Password</b></label>
                 <input type="password" placeholder="Enter Password" v-model="pw" name="pw" required>
-
+​
                 <button type="submit" @click="login">Login</button>
                 <label>
                     <input type="checkbox" checked="checked" name="remember"> Remember me
                 </label>
             </div>
-
+​
             <div class="container" style="background-color:#f1f1f1">
                 <button type="button" @click="signInformView"
                     class="cancelbtn">Cancel</button>
@@ -68,7 +69,7 @@
             <p>Please fill in this form to create an account.</p>
             <hr>
             <label for="email"><b>Email</b></label>
-            <input type="text" placeholder="Enter Email" v-model="fid" name="fid" required>
+            <input type="text" placeholder="Enter Email" v-model="memId" name="memId" required>
       
             <label for="psw"><b>Password</b></label>
             <input type="password" placeholder="Enter Password" v-model="pw" name="ps" required>
@@ -84,162 +85,128 @@
       
             <div class="clearfix">
               <button type="button" @click="signUpformView" class="cancelbtn">Cancel</button>
-              <button type="submit" class="signupbtn">Sign Up</button>
+              <button type="submit" class="signupbtn" @click="signUp">Sign Up</button>
             </div>
           </div>
         </form>
       </div>
 </div>
     
-
-
-    <script>
-    //    var modal = document.getElementById('signInForm');
-
-    //     window.onclick = function (event) {
-    //         if (event.target == modal) {
-    //             modal.style.display = "none";
-    //         }
-    //     }
-
-
-
-        //브라우저 메모리인 Session Storage에 JWT 저장 예정
-        const storage = window.sessionStorage;
-
-        var app = new Vue({
-            el: '#app',
-            data: {
-                fid: "",
-                pw: "",
-                message: "로그인 하세요",
-                status: "",
-                token: "",
-                info: "",
-                detailInfo: "",
-                result: false,
-                signInForm: false,
-                signUpForm: false
-
-            },
-            methods: {
-                signInformView(){
-                    this.signInForm=!this.signInForm;
-                },
-                signUpformView(){
-                    this.signUpForm=!this.signUpForm;
-                },
-                setInfo(status, token, info) {
-                    this.status = status;
-                    this.token = token;
-                    this.info = info;
-                    this.result = true;
-                },
-                setDetailInfo(status, token, info, detailInfo) {
-                    this.status = status;
-                    this.token = token;
-                    this.info = info;
-                    this.detailInfo = detailInfo;
-                },
-                logout() {
-                    storage.setItem("jwt-auth-token", "");
-                    storage.setItem("login_fid", "");
-
-                    this.fid = "";
-                    this.pw = "";
-
-                    this.message = "로그인해 주세요";
-                    this.result = false;
-
-                    this.setDetailInfo("로그아웃 성공", "", "");
-
-                },
-                getInfo() {
-                    axios.post("/api/info", {
-                        fid: this.fid,
-                        pw: this.pw
-                    }, {
-                        headers: {
-                            "jwt-auth-token": storage.getItem("jwt-auth-token")
-                        }
-                    }).then(res => {
-                        this.setDetailInfo("정보 조회 성공", storage.getItem("jwt-auth-token"), this.info,
-                            JSON.stringify(res.data));
-                    }).catch(e => {
-                        this.setDetailInfo("정보 조회 실패", "", e.response.data.msg);
-                    });
-                },
-                login() {
-                    storage.setItem("jwt-auth-token", "");
-                    storage.setItem("login_fid", "");
-
-                    axios.post("/api/logincheck/signin", {
-                        fid: this.fid,
-                        pw: this.pw
-                    }).then(res => {
-
-                        if (res.data.status) {
-
-                            this.fid = "";
-                            this.pw = "";
-                            this.message = res.data.data.fid + "로 로그인 되었습니다";
-
-                            console.dir(res.headers["jwt-auth-token"]);
-
-                            //화면에 정보 출력
-                            this.setInfo("로그인 성공", res.headers["jwt-auth-token"], JSON.stringify(res
-                                .data.data));
-
-                            console.log("11//" + JSON.stringify(res.data.data))
-                            //토큰 & fid 정보 저장
-                            storage.setItem("jwt-auth-token", res.headers["jwt-auth-token"]);
-                            storage.setItem("login_fid", res.data.data.fid);
-
-                        } else {
-
-                            this.setInfo("", "", "");
-                            this.message = "로그인 하세요";
-                            alert("입력 정보를 확인");
-
-                        }
-
-                    }).catch(e => {
-                        this.setInfo("실패", "", JSON.stringify(e.response || e.message));
-                    });
-                },
-                signUp() {
-                    axios.post("/api/signup", {
-                        fid: this.fid,
-                        pw: this.pw
-                    }).then(res => {
-
-                        if (res.data.status) {
-                            alert("회원가입 성공");
-
-                        } else {
-
-                            alert("회원가입 실패"); // 아이디 중복값 검증 메소드 추가 필요
-
-                        }
-
-                    }).catch(e => {
-
-                    });
-                },
-                init() {
-                    console.log("init");
-                    if (storage.getItem("jwt-auth-token")) {
-                        this.message = storage.getItem("login_fid") + "로 로그인 되었습니다";
-                    } else {
-                        storage.setItem("jwt-auth-token", "");
-                    }
-                } //init()
-            },
-            mounted() {
-                this.init();
-            }
-        });
-    </script>
+​
+​
+<script type="text/javascript">
+const storage = window.sessionStorage;
+var app = new Vue({
+	el: '#app',
+	data: {
+		memId: "",
+		pw: "",
+		message: "로그인 하세요",
+		status: "",
+		token: "",
+		info: "",
+		detailInfo: "",
+		result: false,
+		signInForm: false,
+		signUpForm: false
+	},
+	methods: {
+		signInformView(){
+			this.signInForm=!this.signInForm;
+		},
+		signUpformView(){
+			this.signUpForm=!this.signUpForm;
+		},
+		setInfo(status, token, info) {
+			this.status = status;
+			this.token = token;
+			this.info = info;
+			this.result = true;
+		},
+		setDetailInfo(status, token, info, detailInfo) {
+			this.status = status;
+			this.token = token;
+			this.info = info;
+			this.detailInfo = detailInfo;
+		},
+		logout() {
+			storage.setItem("jwt-auth-token", "");
+			storage.setItem("login_memId", "");
+			this.memId = "";
+			this.pw = "";
+			this.message = "로그인해 주세요";
+			this.result = false;
+			this.setDetailInfo("로그아웃 성공", "", "");
+		},
+		getInfo() {
+			axios.post("/api/info", {
+				memId: this.memId,
+				pw: this.pw
+			}, {
+				headers: {
+					"jwt-auth-token": storage.getItem("jwt-auth-token")
+				}
+			}).then(res => {
+				this.setDetailInfo("정보 조회 성공", storage.getItem("jwt-auth-token"), this.info,
+					JSON.stringify(res.data));
+			}).catch(e => {
+				this.setDetailInfo("정보 조회 실패", "", e.response.data.msg);
+			});
+		},
+		login() {
+			storage.setItem("jwt-auth-token", "");
+			storage.setItem("login_memId", "");
+			axios.post("/api/logincheck/signin", {
+				memId: this.memId,
+				pw: this.pw
+			}).then(res => {
+				if (res.data.status) {
+					this.memId = "";
+					this.pw = "";
+					this.message = res.data.data.memId + "로 로그인 되었습니다";
+					console.dir(res.headers["jwt-auth-token"]);
+					//화면에 정보 출력
+					this.setInfo("로그인 성공", res.headers["jwt-auth-token"], JSON.stringify(res
+						.data.data));
+					console.log("11//" + JSON.stringify(res.data.data))
+					//토큰 & memId 정보 저장
+					storage.setItem("jwt-auth-token", res.headers["jwt-auth-token"]);
+					storage.setItem("login_memId", res.data.data.memId);
+				} else {
+					this.setInfo("", "", "");
+					this.message = "로그인 하세요";
+					alert("입력 정보를 확인");
+				}
+			}).catch(e => {
+				this.setInfo("실패", "", JSON.stringify(e.response || e.message));
+			});
+		},
+		signUp() {
+			axios.post("/api/members", {
+				memId: this.memId,
+				pw: this.pw
+			}).then(res => {
+				if (res.data.status) {
+					alert("회원가입 성공");
+				} else {
+					alert("회원가입 실패"); // 아이디 중복값 검증 메소드 추가 필요
+				}
+			}).catch(e => {
+			});
+		},
+		init() {
+			console.log("init");
+			if (storage.getItem("jwt-auth-token")) {
+				this.message = storage.getItem("login_memId") + "로 로그인 되었습니다";
+			} else {
+				storage.setItem("jwt-auth-token", "");
+			}
+		} //init()
+	},
+	mounted() {
+		this.init();
+	}
+});
+</script>
 </body>
-
 </html>

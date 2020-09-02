@@ -11,13 +11,13 @@ public interface FishRepository extends JpaRepository<Fish, Long> {
 	//pk는 id로 되어있음. 따라서 이름은 중복 가능.
 	//반환 타입? 
 	//select * from fish where name=?;
-	public List<Fish> findFishByFishName(String fishName);
+//	public List<Fish> findFishByFishName(String fishName);
 	
 	//like %이름% - containing
-	public List<Fish> findByFishNameContaining(String fishName);
+//	public List<Fish> findByFishNameContaining(String fishName);
 	
 	//select * from fish where fid=? and pw=?
-	public Fish findFishByFidAndPw(String fid, int pw);
+//	public Fish findFishByFidAndPw(String fid, int pw);
 
 //	public Optional<Fish> findByNo(Long no);
 //

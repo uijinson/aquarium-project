@@ -1,13 +1,13 @@
 package kr.pe.aqua.loadDB;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import kr.pe.aqua.model.Fish;
 import kr.pe.aqua.model.FishRepository;
+import kr.pe.aqua.model.Member;
+import kr.pe.aqua.model.MemberRepository;
 import lombok.extern.slf4j.Slf4j;
 
 @Configuration
@@ -19,11 +19,15 @@ public class LoadDataBase {
 	public CommandLineRunner initDatabase(FishRepository repository) {
 
 		return args -> {
-			log.info("Preloading " + repository.save(Fish.builder().fid("a").pw(1).fishName("shark").fishExpain("the sea of the king").build()));
-			log.info("Preloading " + repository.save(Fish.builder().fid("b").pw(2).fishName("nimo").fishExpain("the cutiest of the sea").build()));
-			log.info("Preloading " + repository.save(Fish.builder().fid("c").pw(3).fishName("whale").fishExpain("the biggest").build()));
-			log.info("Preloading " + repository.save(Fish.builder().fid("d").pw(4).fishName("octo").fishExpain("wicked").build()));
-			log.info("Preloading " + repository.save(Fish.builder().fid("e").pw(5).fishName("octo2").fishExpain("wicked2").build()));
+			log.info("Preloading " + repository.save(Fish.builder().fishName("octo2").fishExpain("wicked2").build()));
+		};
+	}
+	
+	@Bean
+	public CommandLineRunner MemberInitDatabase(MemberRepository repository) {
+		return args -> {
+			log.info("Preloading " + repository.save(Member.builder().memId("aaa@naver.com").pw(11).bowlName("aaa").build()));
+			log.info("Preloading " + repository.save(Member.builder().memId("bb").pw(11).bowlName("aaa").build()));
 		};
 	}
 }

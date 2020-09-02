@@ -15,7 +15,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import kr.pe.aqua.model.Fish;
-import kr.pe.aqua.model.FishRepository;
+import kr.pe.aqua.model.Member;
+import kr.pe.aqua.model.MemberRepository;
 import kr.pe.aqua.service.JwtService;
 import lombok.extern.slf4j.Slf4j;
 
@@ -30,20 +31,20 @@ public class AuthorizationController {
 	private JwtService jwtService;	
 	
 	@Autowired
-	private FishRepository repository;
+	private MemberRepository repository;
 	
 	@PostMapping("/logincheck/signin")
-	public ResponseEntity<Map<String, Object>> signin(@RequestBody Fish fish, HttpServletResponse res){
+	public ResponseEntity<Map<String, Object>> signin(@RequestBody Member member, HttpServletResponse res){
 		log.info("--- 로그인 버튼 클릭시에 실행되는 메소드 ---");
 		
 		Map<String, Object> resultMap = new HashMap<>();
 		HttpStatus status = null;
 		
 		try {
-			Fish loginFish = repository.findFishByFidAndPw(fish.getFid(), fish.getPw());
+			Member loginMember = repository.findMemberByMemIdAndPw(member.getMemId(), member.getPw());
 			
 			//로그인 성공시 토큰 생성
-			String token = jwtService.create(loginFish);
+			String token = jwtService.create(loginMember);
 			//System.out.println(token);
 			//토큰 정보는 request의 헤더로 보내고 나머지는 map에 담아두기
 			res.setHeader("jwt-auth-token", token);
@@ -52,7 +53,7 @@ public class AuthorizationController {
 			
 			resultMap.put("auth_token", token);
 			resultMap.put("status", true);
-			resultMap.put("data", loginFish);
+			resultMap.put("data", loginMember);
 			
 			status = HttpStatus.ACCEPTED;
 		
@@ -73,7 +74,7 @@ public class AuthorizationController {
 	 * 
 	 */
 	@PostMapping("/info")
-	public ResponseEntity<Map<String, Object>> getInfo(HttpServletRequest req, @RequestBody Fish user){
+	public ResponseEntity<Map<String, Object>> getInfo(HttpServletRequest req, @RequestBody Member member){
 		log.info("---- getInfo () -----------------");
 		
 		Map<String, Object> resultMap = new HashMap<>();

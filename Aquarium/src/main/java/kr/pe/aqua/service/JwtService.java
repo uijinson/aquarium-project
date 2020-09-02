@@ -11,7 +11,7 @@ import io.jsonwebtoken.Jws;
 import io.jsonwebtoken.JwtBuilder;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
-import kr.pe.aqua.model.Fish;
+import kr.pe.aqua.model.Member;
 import lombok.extern.slf4j.Slf4j;
 
 @Component
@@ -29,7 +29,7 @@ public class JwtService {
 	 * @param fish
 	 * @return
 	 */
-	public String create(final Fish fish) {
+	public String create(final Member member) {
 		
 		System.out.println("JwtService의 create()----");
 		log.trace("time : {} ", expireMin);
@@ -40,7 +40,7 @@ public class JwtService {
 		
 		//토큰 제목설정, 유효기간, 담고 싶은 정보
 		builder.setSubject("로그인 토큰").setExpiration(new Date(System.currentTimeMillis() + 100*60*expireMin)).
-		claim("Fish", fish).claim("second", "new data");
+		claim("Member", member).claim("second", "new data");
 		
 		//signature - secret key를 이용한 암호화
 		builder.signWith(SignatureAlgorithm.HS256, salt.getBytes());
@@ -48,6 +48,7 @@ public class JwtService {
 		//마지막 직렬화 처리 = 네트웤상에서 데이터 손실없이 전송하는 구조로 구성
 		final String jwt = builder.compact();
 		log.debug("토큰 발행 : {} ", jwt);
+		System.out.println(jwt+" "+member);
 		return jwt;
 	}
 	
