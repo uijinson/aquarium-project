@@ -21,8 +21,8 @@ public class Step03TutorialJwtApplication implements WebMvcConfigurer{
 	public void addInterceptors(InterceptorRegistry registry) {
 		System.out.println("addInterceptors() --");
 		registry.addInterceptor(jwtInterceptor).addPathPatterns("/api/**").addPathPatterns("/api/fish/**")
-		.excludePathPatterns("/api/logincheck/**")
-		.excludePathPatterns(Arrays.asList("/css/**","/script/**","/plugin/**"))
+		.excludePathPatterns(Arrays.asList("/css/**","/script/**","/plugin/**"))		
+		.excludePathPatterns("/api/logincheck/signin")
 		.excludePathPatterns("/api/members");
 		
 	}

@@ -2,6 +2,7 @@ package kr.pe.aqua.controller;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -9,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.lang.NonNull;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -36,13 +38,14 @@ public class AuthorizationController {
 	@PostMapping("/logincheck/signin")
 	public ResponseEntity<Map<String, Object>> signin(@RequestBody Member member, HttpServletResponse res){
 		log.info("--- 로그인 버튼 클릭시에 실행되는 메소드 ---");
-		
+		System.out.println("여기는 로그인 시작");
 		Map<String, Object> resultMap = new HashMap<>();
 		HttpStatus status = null;
 		
 		try {
 			Member loginMember = repository.findMemberByMemIdAndPw(member.getMemId(), member.getPw());
-			
+			System.out.println("--여기는 로그인 정보 검색--"+loginMember);//
+			Optional.of(loginMember);
 			//로그인 성공시 토큰 생성
 			String token = jwtService.create(loginMember);
 			//System.out.println(token);

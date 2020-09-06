@@ -31,7 +31,7 @@ public class JwtInterceptor implements HandlerInterceptor {
 		System.out.println("---- " + req.getHeader("jwt-auth-token"));
 
 		String token = req.getHeader("jwt-auth-token");
-
+		
 		if (token != null && token.length() > 0) {
 			// 유효한 토큰이면 진행, 아니면 예외 발생
 			log.info("토큰 사용 가능 : {} ", token);
