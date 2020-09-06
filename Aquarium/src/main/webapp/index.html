@@ -191,7 +191,8 @@ var app = new Vue({
 				pw: this.pw,
 				fishBowlName: this.fishBowlName
 			}).then(res => {
-				if (res.data.status) {
+				consol.log("회원가입---"+res.data);
+				if (res.data) {
 					alert("회원가입 성공");
 				} else {
 					alert("회원가입 실패"); // 아이디 중복값 검증 메소드 추가 필요
