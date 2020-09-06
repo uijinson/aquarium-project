@@ -34,7 +34,7 @@
     </div>
     <div id="signInForm" v-if="signInForm" class="modal">
 ​
-        <form class="modal-content animate" method="get">
+        <form class="modal-content animate" action="testpage.html" method="get">
             <div class="imgcontainer">
                 <span @click="signInformView" class="close"
                     title="Close Modal">&times;</span>
@@ -48,7 +48,7 @@
                 <label for="psw"><b>Password</b></label>
                 <input type="password" placeholder="Enter Password" v-model="pw" name="pw" required>
 ​
-                <button type="submit" @click="login">Login</button>
+                <button type="submit" @click="login" >Login</button>
                 <label>
                     <input type="checkbox" checked="checked" name="remember"> Remember me
                 </label>
