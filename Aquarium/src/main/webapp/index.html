@@ -77,8 +77,8 @@
             <label for="psw-repeat"><b>Repeat Password</b></label>
             <input type="password" placeholder="Repeat Password" name="psw-repeat" required>
 			
-            <label for="fishBowlName"><b>Fish-Bowl-Name</b></label>
-            <input type="text" placeholder="Enter Fish-Bowl-Name" v-model="fishBowlName" name="fishBowlName" required>
+            <label for="bowlName"><b>Fish-Bowl-Name</b></label>
+            <input type="text" placeholder="Enter Fish-Bowl-Name" v-model="bowlName" name="bowlName" required>
             
             <label>
               <input type="checkbox" checked="checked" name="remember" style="margin-bottom:15px"> Remember me
@@ -104,7 +104,7 @@ var app = new Vue({
 	data: {
 		memId: "",
 		pw: "",
-		fishBowlName: "",
+		bowlName: "",
 		message: "로그인 하세요",
 		status: "",
 		token: "",
@@ -189,10 +189,9 @@ var app = new Vue({
 			axios.post("/api/members", {
 				memId: this.memId,
 				pw: this.pw,
-				fishBowlName: this.fishBowlName
+				bowlName: this.bowlName
 			}).then(res => {
-				consol.log("회원가입---"+res.data);
-				if (res.data) {
+				if (res.data.status) {
 					alert("회원가입 성공");
 				} else {
 					alert("회원가입 실패"); // 아이디 중복값 검증 메소드 추가 필요
