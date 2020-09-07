@@ -24,8 +24,8 @@ public class Step03TutorialJwtApplication implements WebMvcConfigurer{
 		.excludePathPatterns(Arrays.asList("/css/**","/script/**","/plugin/**"))		
 		.excludePathPatterns("/api/logincheck/signin")
 		.excludePathPatterns("/api/members");
-		
 	}
+	
 	@Override
 	public void addCorsMappings(CorsRegistry registry) {
 		System.out.println("addCorsMappings() --");
