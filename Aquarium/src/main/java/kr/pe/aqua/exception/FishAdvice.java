@@ -10,9 +10,9 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 class FishNotFoundAdvice {
 
   @ResponseBody
-  @ExceptionHandler(FishNotFoundException.class)
+  @ExceptionHandler(NotFoundException.class)
   @ResponseStatus(HttpStatus.NOT_FOUND)
-  public String fishNotFoundHandler(FishNotFoundException ex) {
+  public String fishNotFoundHandler(NotFoundException ex) {
     return ex.getMessage();
   }
 }
