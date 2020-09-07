@@ -29,9 +29,10 @@ public class JwtInterceptor implements HandlerInterceptor {
 
 		// request의 parameter에서 auth_token으로 넘어온 녀석을 검색
 		System.out.println("---- " + req.getHeader("jwt-auth-token"));
-
+System.out.println("토토큰큰"+req.getHeader("login_memId"));
+System.out.println("토토"+req.getHeader("abc"));
 		String token = req.getHeader("jwt-auth-token");
-
+		
 		if (token != null && token.length() > 0) {
 			// 유효한 토큰이면 진행, 아니면 예외 발생
 			log.info("토큰 사용 가능 : {} ", token);
