@@ -25,8 +25,8 @@ import kr.pe.aqua.model.FishRepository;
 @RequestMapping("/api")
 public class FishController {
 	
-	
 	private final FishRepository repository;
+	
 	public FishController(FishRepository repository) {
 		this.repository = repository;
 	}

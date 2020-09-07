@@ -33,13 +33,13 @@ public class EquipInventory {
 	//다대일
 	@ManyToOne
 	@JoinColumn(name="mem_id")
-	private Member memberId; // fk - member table의 pk //Member -> String
+	private Member memId; // fk - member table의 pk //Member -> String
 
 	@Builder
-	public EquipInventory(Long equipNo, Equipment equipId, Member memberId) {
+	public EquipInventory(Long equipNo, Equipment equipId, Member memId) {
 		super();
 		this.equipNo = equipNo;
 		this.equipId = equipId;
-		this.memberId = memberId;
+		this.memId = memId;
 	}
 }

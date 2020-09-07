@@ -76,9 +76,7 @@ public class LoadDataBase {
 		return args -> {
 		
 			log.info("Preloading " + repository.save(FishInventory.builder().fishId(Fish.builder().fishId(1L).fishName("shark").fishExplain("wicked2").fishHp(1).build())
-					.memberId(Member.builder().memId("aaa@naver.com").pw(11).nickName("b1").build()).build()));
-			
-			//log.info("Preloading " + repository.save(FishInventory.builder().test("a").build()));
+					.memId(Member.builder().memId("aaa@naver.com").pw(11).nickName("b1").build()).build()));
 		};
 	}
 	
@@ -87,9 +85,8 @@ public class LoadDataBase {
 	public CommandLineRunner AccInventoryInitDatabase(AccInventoryRepository repository) {
 		return args -> {
 			log.info("Preloading " + repository.save(AccInventory.builder().accId(Accessory.builder().accId(1L).accName("sea plant").accExplain("sea plant1").accPrice(100).build())
-					.memberId(Member.builder().memId("aaa@naver.com").pw(11).nickName("b1").build()).build()));
-//			log.info("Preloading " + repository.save(AccInventory.builder().accId(2).memberId("aaa@naver.com").build()));
-//			log.info("Preloading " + repository.save(AccInventory.builder().accId(1).memberId("aaa@naver.com").build()));
+					.memId(Member.builder().memId("aaa@naver.com").pw(11).nickName("b1").build()).build()));
+
 		};
 	}
 	
@@ -98,9 +95,7 @@ public class LoadDataBase {
 	public CommandLineRunner EquipInventoryInitDatabase(EquipInventoryRepository repository) {
 		return args -> {
 			log.info("Preloading " + repository.save(EquipInventory.builder().equipId(Equipment.builder().equipId(1L).equipName("gun").equipExplain("gun1").equipPrice(100).build()
-					).memberId(Member.builder().memId("aaa@naver.com").pw(11).nickName("b1").build()).build()));
-//			log.info("Preloading " + repository.save(EquipInventory.builder().equipId(2).memberId("aaa@naver.com").build()));
-//			log.info("Preloading " + repository.save(EquipInventory.builder().equipId(1).memberId("aaa@naver.com").build()));
+					).memId(Member.builder().memId("aaa@naver.com").pw(11).nickName("b1").build()).build()));
 		};
 	}
 	

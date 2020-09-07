@@ -20,9 +20,9 @@ public class EquipInventoryController {
 	
 	@ApiOperation(value = "selectFish() 메소드 사용", notes = "사용자의 물고기 리스트")
 	@GetMapping("/fish/select")
-	public List<EquipInventory> selectFish(@ApiParam(value = "이메일을 입력해주세요", required = true) @RequestParam String memberId) {
+	public List<EquipInventory> selectFish(@ApiParam(value = "이메일을 입력해주세요", required = true) @RequestParam String memId) {
 		
-		return repository.findequipByMemId(memberId);
+		return repository.findequipByMemId(memId);
 		
 	}
 }

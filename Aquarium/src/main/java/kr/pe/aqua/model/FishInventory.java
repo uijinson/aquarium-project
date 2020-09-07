@@ -35,15 +35,15 @@ public class FishInventory {
 	//다대일
 	@ManyToOne
 	@JoinColumn(name="mem_id")
-	private Member memberId; // fk - member table의 pk  
+	private Member memId; // fk - member table의 pk  
 
 	@Builder
-	public FishInventory(Long fishNo, String test, Fish fishId, Member memberId) {
+	public FishInventory(Long fishNo, String test, Fish fishId, Member memId) {
 		super();
 		this.fishNo = fishNo;
 		this.test = test;
 		this.fishId = fishId;
-		this.memberId = memberId;
+		this.memId = memId;
 	}
 
 }

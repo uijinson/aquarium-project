@@ -24,8 +24,8 @@ public class AccInventoryController {
 		 where ai.mem_id='a'
 		 and ai.acc_id = a.acc_id;
 	 */
-	public List<AccInventory> selectAcc(@ApiParam(value = "이메일을 입력해주세요", required = true) @RequestParam String memberId) {
+	public List<AccInventory> selectAcc(@ApiParam(value = "이메일을 입력해주세요", required = true) @RequestParam String memId) {
 		
-		return repository.findAccByMemId(memberId);
+		return repository.findAccByMemId(memId);
 	}
 }

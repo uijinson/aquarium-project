@@ -9,7 +9,7 @@ import org.springframework.data.repository.query.Param;
 public interface EquipInventoryRepository extends JpaRepository<EquipInventory, Long> {
 
 	@Query(value = "select ei.equip_no, ei.equip_id, ei.mem_id, e.equip_ID, e.equip_explain, e.equip_name, e.equip_price from equip_inventory ei, EQUIPMENT e"
-			+ "where ei.mem_id=:memberId" + "and ei.equip_id = e.equip_id",
+			+ "where ei.mem_id=:memId" + "and ei.equip_id = e.equip_id",
 			nativeQuery = true)
-	List<EquipInventory> findequipByMemId(@Param("memberId") String memberId);
+	List<EquipInventory> findequipByMemId(@Param("memId") String memId);
 }
