@@ -113,19 +113,22 @@
 					});
 				},
 				shop() {
-					storage.setItem("jwt-auth-token", storage.getItem("jwt-auth-token"));
-					storage.setItem("memId", storage.getItem("login_memId"));
-					axios.get("/api/allfish", {
-						memId: storage.getItem("login_memId"),
+					axios.get("api/allfish", {
+						headers: {
+							"jwt-auth-token": storage.getItem("jwt-auth-token"),
+							"login_memId": storage.getItem("login_memId")
+						}
 					}).then(res => {
 						console.dir(JSON.stringify(res.data) + "----");
-						//토큰 & memId 정보 저장
 					}).catch(e => {
 						this.setInfo("실패", "", JSON.stringify(e.response || e.message));
-						console.log("fissh 오류");
+						console.log("fish 오류");
 					}),
 						axios.get("/api/allEquipments", {
-							memId: storage.getItem("login_memId"),
+							headers: {
+								"jwt-auth-token": storage.getItem("jwt-auth-token"),
+								"login_memId": storage.getItem("login_memId")
+							}
 						}).then(res => {
 							console.dir(JSON.stringify(res.data));
 						}).catch(e => {
@@ -133,7 +136,10 @@
 							console.log("equip 오류");
 						}),
 						axios.get("/api/allAccessories", {
-							memId: storage.getItem("login_memId"),
+							headers: {
+								"jwt-auth-token": storage.getItem("jwt-auth-token"),
+								"login_memId": storage.getItem("login_memId")
+							}
 						}).then(res => {
 							console.dir(JSON.stringify(res.data));
 						}).catch(e => {
@@ -146,36 +152,48 @@
 				inventory() {
 					storage.setItem("jwt-auth-token", storage.getItem("jwt-auth-token"));
 					storage.setItem("memId", storage.getItem("login_memId"));
-					axios.get("/testpage/fish/select",{
-						params:{memId:storage.getItem("login_memId")}
+					axios.get("/testpage/fish/select", {
+						headers: {
+							"jwt-auth-token": storage.getItem("jwt-auth-token"),
+							"login_memId": storage.getItem("login_memId")
+						},
+						params: { memId: storage.getItem("login_memId") }
 					})
-					.then(res => {
-						console.dir(JSON.stringify(res.data) + "----");
-						//토큰 & memId 정보 저장
-					}).catch(e => {
-						this.setInfo("실패", "", JSON.stringify(e.response || e.message));
-						console.log("fish inventory 오류");
-					}),
-					axios.get("/testpage/equipment/select",{
-						params:{memId:storage.getItem("login_memId")}
-					})
-					.then(res => {
-						console.dir(JSON.stringify(res.data) + "----");
-						//토큰 & memId 정보 저장
-					}).catch(e => {
-						this.setInfo("실패", "", JSON.stringify(e.response || e.message));
-						console.log("equip inventory 오류");
-					}),
-					axios.get("/testpage/accessory/select",{
-						params:{memId:storage.getItem("login_memId")}
-					})
-					.then(res => {
-						console.dir(JSON.stringify(res.data) + "----");
-						//토큰 & memId 정보 저장
-					}).catch(e => {
-						this.setInfo("실패", "", JSON.stringify(e.response || e.message));
-						console.log("acc inventory 오류");
-					})
+						.then(res => {
+							console.dir(JSON.stringify(res.data) + "----");
+							//토큰 & memId 정보 저장
+						}).catch(e => {
+							this.setInfo("실패", "", JSON.stringify(e.response || e.message));
+							console.log("fish inventory 오류");
+						}),
+						axios.get("/testpage/equipment/select", {
+							headers: {
+								"jwt-auth-token": storage.getItem("jwt-auth-token"),
+								"login_memId": storage.getItem("login_memId")
+							},
+							params: { memId: storage.getItem("login_memId") }
+						})
+							.then(res => {
+								console.dir(JSON.stringify(res.data) + "----");
+								//토큰 & memId 정보 저장
+							}).catch(e => {
+								this.setInfo("실패", "", JSON.stringify(e.response || e.message));
+								console.log("equip inventory 오류");
+							}),
+						axios.get("/testpage/accessory/select", {
+							headers: {
+								"jwt-auth-token": storage.getItem("jwt-auth-token"),
+								"login_memId": storage.getItem("login_memId")
+							},
+							params: { memId: storage.getItem("login_memId") }
+						})
+							.then(res => {
+								console.dir(JSON.stringify(res.data) + "----");
+								//토큰 & memId 정보 저장
+							}).catch(e => {
+								this.setInfo("실패", "", JSON.stringify(e.response || e.message));
+								console.log("acc inventory 오류");
+							})
 				},
 				login() {
 					storage.setItem("jwt-auth-token", "");
