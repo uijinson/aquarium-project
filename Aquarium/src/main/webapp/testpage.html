@@ -122,38 +122,59 @@
 						//토큰 & memId 정보 저장
 					}).catch(e => {
 						this.setInfo("실패", "", JSON.stringify(e.response || e.message));
-						console.log("fish 오류");
+						console.log("fissh 오류");
 					}),
-					axios.get("/api/allEquipments",{
-						memId: storage.getItem("login_memId"),
-					}).then(res => {
-						console.dir(JSON.stringify(res.data));
-					}).catch(e=>{
-						this.setInfo("실패", "", JSON.stringify(e.response || e.message));
-						console.log("equip 오류");
-					}),
-					axios.get("/api/allAccessories",{
-						memId: storage.getItem("login_memId"),
-					}).then(res => {
-						console.dir(JSON.stringify(res.data));
-					}).catch(e=>{
-						this.setInfo("실패", "", JSON.stringify(e.response || e.message));
-						console.log("acc 오류");
-					})
-					;
+						axios.get("/api/allEquipments", {
+							memId: storage.getItem("login_memId"),
+						}).then(res => {
+							console.dir(JSON.stringify(res.data));
+						}).catch(e => {
+							this.setInfo("실패", "", JSON.stringify(e.response || e.message));
+							console.log("equip 오류");
+						}),
+						axios.get("/api/allAccessories", {
+							memId: storage.getItem("login_memId"),
+						}).then(res => {
+							console.dir(JSON.stringify(res.data));
+						}).catch(e => {
+							this.setInfo("실패", "", JSON.stringify(e.response || e.message));
+							console.log("acc 오류");
+						})
+						;
 
 				},
-				inventory(){
+				inventory() {
 					storage.setItem("jwt-auth-token", storage.getItem("jwt-auth-token"));
 					storage.setItem("memId", storage.getItem("login_memId"));
-					axios.get(("/testpage/fish/select/1"+this.AxiosParams), {
-						Axiosparams :memId
-					}).then(res => {
+					axios.get("/testpage/fish/select",{
+						params:{memId:storage.getItem("login_memId")}
+					})
+					.then(res => {
 						console.dir(JSON.stringify(res.data) + "----");
 						//토큰 & memId 정보 저장
 					}).catch(e => {
 						this.setInfo("실패", "", JSON.stringify(e.response || e.message));
-						console.log("로그인 오류");
+						console.log("fish inventory 오류");
+					}),
+					axios.get("/testpage/equipment/select",{
+						params:{memId:storage.getItem("login_memId")}
+					})
+					.then(res => {
+						console.dir(JSON.stringify(res.data) + "----");
+						//토큰 & memId 정보 저장
+					}).catch(e => {
+						this.setInfo("실패", "", JSON.stringify(e.response || e.message));
+						console.log("equip inventory 오류");
+					}),
+					axios.get("/testpage/accessory/select",{
+						params:{memId:storage.getItem("login_memId")}
+					})
+					.then(res => {
+						console.dir(JSON.stringify(res.data) + "----");
+						//토큰 & memId 정보 저장
+					}).catch(e => {
+						this.setInfo("실패", "", JSON.stringify(e.response || e.message));
+						console.log("acc inventory 오류");
 					})
 				},
 				login() {

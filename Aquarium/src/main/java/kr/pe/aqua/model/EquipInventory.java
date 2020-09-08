@@ -1,5 +1,6 @@
 package kr.pe.aqua.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -23,6 +24,7 @@ import lombok.ToString;
 public class EquipInventory {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "EQUIP_NO_GEN")
+	@Column(name="equip_no")
 	private Long equipNo; // pk
 	
 	//다대일

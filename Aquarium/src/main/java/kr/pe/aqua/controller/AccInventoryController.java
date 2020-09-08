@@ -2,14 +2,18 @@ package kr.pe.aqua.controller;
 
 import java.util.List;
 
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
+import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import kr.pe.aqua.model.AccInventory;
 import kr.pe.aqua.model.AccInventoryRepository;
-import kr.pe.aqua.model.Fish;
 
+@RestController
+@RequestMapping("/testpage")
 public class AccInventoryController {
 	
 	private final AccInventoryRepository repository;
@@ -18,14 +22,12 @@ public class AccInventoryController {
 		this.repository = repository;
 	}
 	
-	/*
-	 * select ai.acc_no, ai.acc_id, ai.mem_id, a.acc_ID, a.acc_EXPLAIN, a.acc_NAME, a.acc_PRICE
-		 from acc_inventory ai, Accessory a
-		 where ai.mem_id='a'
-		 and ai.acc_id = a.acc_id;
-	 */
+	@ApiOperation(value = "selectAcc() 메소드 사용", notes = "사용자의 악세사리 리스트")
+	@GetMapping("/accessory/select")
 	public List<AccInventory> selectAcc(@ApiParam(value = "이메일을 입력해주세요", required = true) @RequestParam String memId) {
-		
-		return repository.findAccByMemId(memId);
+		System.out.println("------AccInven-------"+memId);
+		List<AccInventory> myAcc = repository.findAccByMemId(memId);
+		System.out.println(myAcc);
+		return myAcc;
 	}
 }

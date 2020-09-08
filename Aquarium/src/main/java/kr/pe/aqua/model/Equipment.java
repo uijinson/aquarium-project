@@ -22,14 +22,22 @@ import lombok.ToString;
 public class Equipment {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "EQUIP_SEQ_GEN")
+	@Column(name="equip_id")
 	private Long equipId; // pk
-	@Column(unique = true, nullable = false)
+	
+	@Column(name="equip_name", unique = true, nullable = false)
 	private String equipName;
-	@Column(unique = true, nullable = false)
+	
+	@Column(name="equip_explain", unique = true, nullable = false)
 	private String equipExplain;
 	
+	@Column(name="equip_price")
 	private int equipPrice;
+	
+	@Column(name="equip_img")
 	private String equipImg; //상점에 들어갈 사진 
+	
+	@Column(name="equip_src")
 	private String  equipSrc; //obj의 경로
 	
 	@Builder

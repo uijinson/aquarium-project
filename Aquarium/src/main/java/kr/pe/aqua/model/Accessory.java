@@ -22,14 +22,22 @@ import lombok.ToString;
 public class Accessory {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ACC_SEQ_GEN")
+	@Column(name="acc_id")
 	private Long accId; // pk
-	@Column(unique = true, nullable = false)
+	
+	@Column(name="acc_name", unique = true, nullable = false)
 	private String accName;
-	@Column(unique = true, nullable = false)
+	
+	@Column(name="acc_explain", unique = true, nullable = false)
 	private String accExplain;
 	
+	@Column(name="acc_price")
 	private int accPrice;
+
+	@Column(name="acc_img")
 	private String accImg; //상점에 들어갈 사진 
+
+	@Column(name="acc_src")
 	private String  accSrc; //obj의 경로
 	
 	

@@ -25,7 +25,7 @@ public class Step03TutorialJwtApplication implements WebMvcConfigurer{
 		.excludePathPatterns("/api/allEquipments/**")
 		.excludePathPatterns("/api/allfish/**")
 		.excludePathPatterns("/api/allAccessories/**")
-		.excludePathPatterns("/testpage/fish/select/**")
+		.excludePathPatterns("/testpage/**")
 		.excludePathPatterns("/api/logincheck/signin").excludePathPatterns("/api/fish/select/**")
 		.excludePathPatterns("/api/members");
 	}
