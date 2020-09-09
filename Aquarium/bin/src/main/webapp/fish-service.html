@@ -13,7 +13,7 @@
 		
 		function one(){
 		
-			 axios.get('/api/fishes', {
+			 axios.get('/api/members', {
 				 headers : {
  					"jwt-auth-token" : storage.getItem("jwt-auth-token")
  			    }
@@ -29,7 +29,7 @@
 			console.log(item);
 			tab = document.querySelector("#dataTable");
 			document.querySelector("#divView").style.display = "block";
-			tab.innerHTML = tab.innerHTML + '<tr><td>' + item.fishName + '</td><td>' + item.fishExpain + '</td></tr>';
+			tab.innerHTML = tab.innerHTML + '<tr><td>' + item.memId + '</td><td>' + item.pw + '</td></tr>' + item.bowlName +'</td></tr>';
 		}
 	</script>
 		<h3>인증된 직원들만 이용하는 페이지</h3>
@@ -42,8 +42,8 @@
 	<div id="divView" style="display: none;">
 		<table border="1" id="dataTable">
 			<tr>
-				<td>이름</td>
-				<td>fishExpain</td>
+				<td>memId</td>
+				<td>pw</td>
 			</tr>
 		</table>
 	</div>

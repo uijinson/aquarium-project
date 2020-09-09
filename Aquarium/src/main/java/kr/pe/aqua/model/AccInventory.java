@@ -33,13 +33,13 @@ public class AccInventory {
 	//다대일
 	@ManyToOne
 	@JoinColumn(name="mem_id")
-	private Member memberId; // fk - member table의 pk //Member -> String
+	private Member memId; // fk - member table의 pk //Member -> String
 
 	@Builder
-	public AccInventory(Long accNo, Accessory accId, Member memberId) {
+	public AccInventory(Long accNo, Accessory accId, Member memId) {
 		super();
 		this.accNo = accNo;
 		this.accId = accId;
-		this.memberId = memberId;
+		this.memId = memId;
 	}
 }

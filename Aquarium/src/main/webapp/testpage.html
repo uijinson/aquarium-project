@@ -1,13 +1,120 @@
 <!DOCTYPE html>
-<html lang="en">
-​
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-​</head>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Demo 09</title>
+		<script type="text/javascript" src="JS/three.min.js"></script>
+		<script type="text/javascript" src="JS/MTLLoader.js"></script>
+		<script type="text/javascript" src="JS/OBJLoader.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+		<script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+		<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
-<body>
-로그인 시 열리는 페이지
-</body>
+		<link rel="stylesheet" href="testpage.css">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+		<script type="text/javascript" src="JS/demo.js"></script>
+		<script src="JS/testpage.js" defer></script>
+		<script src="JS/filter.js" defer></script>
+	</head>
+
+	<body>
+		<div id="app" class="icon-bar">
+			<button class="btn" @click="logout"><i class="fa fa-home"></i> Home</button>
+			<button class="btn" @click="shopOpen"><i class="fa fa-bars"></i> shop</button>
+			<button class="btn" @click="invenOpen"><i class="fa fa-trash"></i> inventory</button>
+			<button class="btn"><i class="fa fa-close"></i> save</button>
+
+
+			<div id="shopForm" v-if="shopView" class="main">
+				<h2>SHOP</h2>
+				<div id="myBtnContainer">
+					<button class="btn active" onclick="filterSelection('all')"> Show all</button>
+					<button class="btn" onclick="filterSelection('fish')"> fish</button>
+					<button class="btn" onclick="filterSelection('acc')"> acc</button>
+					<button class="btn" onclick="filterSelection('equip')"> equip</button>
+				</div>
+
+				<div id="shop" class="row" v-for="v in shopInventory.fish">
+					<div class="column fish">
+						<div class="content">
+							<img :src="v.fishImg" :alt="v.fishName" style="width:30%">
+							<h4>{{v.fishName}}</h4>
+							<p>{{v.fishExplain}}</p>
+							<p><button class="button">구입</button></p>
+						</div>
+					</div>
+				</div>
+
+				<div id="shop" class="row" v-for="v in shopInventory.acc">
+					<div class="column acc">
+						<div class="content">
+							<img :src="v.accImg" :alt="v.accName" style="width:30%">
+							<h4>{{v.accName}}</h4>
+							<p>{{v.accExplain}}</p>
+							<p><button class="button">구입</button></p>
+						</div>
+					</div>
+				</div>
+
+				<div id="shop" class="row" v-for="v in shopInventory.equip">
+					<div class="column equip">
+						<div class="content">
+							<img :src="v.equipImg" :alt="v.equipName" style="width:30%">
+							<h4>{{v.equipName}}</h4>
+							<p>{{v.equipExplain}}</p>
+							<p><button class="button">구입</button></p>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!--인벤토리-->
+			<div id="shopForm" v-if="invenView" class="main">
+				<h2>Inventory</h2>
+				<div id="myBtnContainer">
+					<button class="btn active" onclick="filterSelection('all')"> Show all</button>
+					<button class="btn" onclick="filterSelection('fish')"> fish</button>
+					<button class="btn" onclick="filterSelection('acc')"> acc</button>
+					<button class="btn" onclick="filterSelection('equip')"> equip</button>
+				</div>
+
+				<div id="shop" class="row" v-for="v in myInventory.fish">
+					<div class="column fish">
+						<div class="content">
+							<img :src="v.fishId.fishImg" :alt="v.fishName" style="width:30%">
+							<h4>{{v.fishId.fishName}}</h4>
+							<p>{{v.fishId.fishExplain}}</p>
+							<p><button class="button">구입</button></p>
+						</div>
+					</div>
+				</div>
+
+				<div id="shop" class="row" v-for="v in myInventory.acc">
+					<div class="column acc">
+						<div class="content">
+							<img :src="v.accId.accImg" :alt="v.accName" style="width:30%">
+							<h4>{{v.accId.accName}}</h4>
+							<p>{{v.accId.accExplain}}</p>
+							<p><button class="button">구입</button></p>
+						</div>
+					</div>
+				</div>
+
+				<div id="shop" class="row" v-for="v in myInventory.equip">
+					<div class="column equip">
+						<div class="content">
+							<img :src="v.equipId.equipImg" :alt="v.equipName" style="width:30%">
+							<h4>{{v.equipId.equipName}}</h4>
+							<p>{{v.equipId.equipExplain}}</p>
+							<p><button class="button">구입</button></p>
+						</div>
+					</div>
+				</div>
+			</div>
+
+
+	</body>
 </html>
+

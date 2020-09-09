@@ -26,6 +26,16 @@ import kr.pe.aqua.model.VillainRepository;
 @RequestMapping(value = "/api")
 public class MemberController {
 
+	/* MemberController
+	 * 1. 회원가입(id, pw, nickName, money)
+	 * 2. 수정하기
+	 * 3. 탈퇴하기
+	 * 4. 돈관리
+	 * 		1. 현재 잔고(select)
+	 * 		2. villain 잡을 시 -> 돈이 증가(+ : update)
+	 * 		3. 상점 -> 물고기/악세서리/장비 구매시 -> 구매금만큼 돈이 감소(- : update)
+	 */
+
 	//singleton
 	private final MemberRepository repository;
 	private VillainRepository vilRepository;
@@ -78,8 +88,6 @@ public class MemberController {
 	}
 
 	//2. villain -> 잡으면 -> 돈이 증가(+ : update)
-	//vil 죽은 것을 어떻게 알지? -> front에서 axios 요청: 매핑되는 url 값이 있다. (빌런아이디랑 회원아이디를 받고 체크 -> 체크 -> 돈이 증가
-	//axios (빌런아이디랑 회원아이디) ->  
 	@ApiOperation(value = "vilkillMoney() 메소드 사용", notes = "villain을 잡았을 때, 돈 증가")
 	@PutMapping("/money/vilkill")
 	public Member vilkillMoney(@ApiParam(value = "이메일을 입력해주세요", required = true) @RequestParam String memId

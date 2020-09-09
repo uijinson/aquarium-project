@@ -21,31 +21,41 @@ import lombok.ToString;
 @ToString
 @SequenceGenerator(name = "FISH_SEQ_GEN", sequenceName="FISH_SEQ", initialValue = 1, allocationSize = 1)
 public class Fish {
-	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "FISH_SEQ_GEN")
-	private Long fishId; // pk
-	@Column(unique = true, nullable = false)
-	private String fishName;
-	@Column(unique = true, nullable = false)
-	private String fishExplain;
-	
-	private int fishPrice;
-	private int fishHp;
-	private String fishImg; //상점에 들어갈 사진 
-	private String  fishSrc; //obj의 경로
+   @Id
+   @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "FISH_SEQ_GEN")
+   @Column(name = "fish_id")
+   private Long fishId; // pk
+   
+   @Column(name = "fish_name", unique = true, nullable = false)
+   private String fishName;
+   
+   @Column(name="fish_explain",unique = true, nullable = false)
+   private String fishExplain;
+   
+   @Column(name="fish_price")
+   private int fishPrice;
+   
+   @Column(name="fish_hp")
+   private int fishHp;
+   
+   @Column(name="fish_img")
+   private String fishImg; //상점에 들어갈 사진 
+   
+   @Column(name="fish_src")
+   private String  fishSrc; //obj의 경로
 
-	@Builder
-	public Fish(Long fishId, String fishName, String fishExplain, int fishPrice, int fishHp, String fishImg,
-			String fishSrc) {
-		super();
-		this.fishId = fishId;
-		this.fishName = fishName;
-		this.fishExplain = fishExplain;
-		this.fishPrice = fishPrice;
-		this.fishHp = fishHp;
-		this.fishImg = fishImg;
-		this.fishSrc = fishSrc;
-	}
-	
+   @Builder
+   public Fish(Long fishId, String fishName, String fishExplain, int fishPrice, int fishHp, String fishImg,
+         String fishSrc) {
+      super();
+      this.fishId = fishId;
+      this.fishName = fishName;
+      this.fishExplain = fishExplain;
+      this.fishPrice = fishPrice;
+      this.fishHp = fishHp;
+      this.fishImg = fishImg;
+      this.fishSrc = fishSrc;
+   }
+   
 
 }

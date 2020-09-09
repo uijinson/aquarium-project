@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+	<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Demo 09</title>
+		<script type="text/javascript" src="JS/three.min.js" ></script>
+		<script type="text/javascript" src="JS/MTLLoader.js" ></script>
+		<script type="text/javascript" src="JS/OBJLoader.js" ></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+		
+		
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+		<script type="text/javascript" src="JS/demo.js" ></script>
+		<style>
+html, body {
+   margin: 0;
+   height: 100%;
+}
+#c {
+   width: 100%;
+   height: 100%;
+   display: block;
+}
+
+.icon-bar {
+  width: 100%;
+  background-color: #555;
+  overflow: auto;
+}
+
+.icon-bar button {
+  float: left;
+  width: 20%;
+  text-align: center;
+  padding: 12px 0;
+  transition: all 0.3s ease;
+  color: white;
+  font-size: 36px;
+}
+
+.icon-bar button:hover {
+  background-color: #000;
+}
+
+.active {
+  background-color: #4CAF50;
+}
+</style>
+	</head>
+	<body>
+<div id="app" class="icon-bar">
+<button class="btn" @click="logout" ><i class="fa fa-home"></i> Home</button> 
+<button class="btn" @click="shop" ><i class="fa fa-bars"></i> shop</button>
+<button class="btn"><i class="fa fa-trash"></i> inventory</button>
+<button class="btn"><i class="fa fa-close"></i> save</button>
+</div>
+<script>
+  const storage = window.sessionStorage;
+var app = new Vue({
+	el: '#app',
+	data: {
+		memId: "",
+		bowlName: "",
+		message: "로그인 하세요",
+		status: "",
+		token: "",
+		info: "",
+		detailInfo: "",
+		result: false
+	},
+	methods: {
+		setInfo(status, token, info) {
+			this.status = status;
+			this.token = token;
+			this.info = info;
+			this.result = true;
+		},
+		setDetailInfo(status, token, info, detailInfo) {
+			this.status = status;
+			this.token = token;
+			this.info = info;
+			this.detailInfo = detailInfo;
+		},
+		logout() {
+			storage.setItem("jwt-auth-token", "");
+			storage.setItem("login_memId", "");
+			this.memId = "";
+			this.message = "로그인해 주세요";
+			this.result = false;
+			this.setDetailInfo("로그아웃 성공", "", "");
+      location.href="index.html";
+		},
+		getInfo() {
+			axios.post("/api/info", {
+				memId: this.memId,
+				pw: this.pw
+			}, {
+				headers: {
+					"jwt-auth-token": storage.getItem("jwt-auth-token")
+				}
+			}).then(res => {
+				this.setDetailInfo("정보 조회 성공", storage.getItem("jwt-auth-token"), this.info,
+					JSON.stringify(res.data));
+			}).catch(e => {
+				this.setDetailInfo("정보 조회 실패", "", e.response.data.msg);
+			});
+		},
+    shop(){
+      alert(storage.getItem("login_memId")+"///"+storage.getItem("jwt-auth-token"))
+      storage.setItem("jwt-auth-token", storage.getItem("jwt-auth-token"));
+			storage.setItem("memberId", storage.getItem("login_memId"));
+      storage.setItem("abc", 12344);
+      axios.get("api/allfish", {
+				memId: storage.getItem("login_memId"),
+			}).then(res => {
+					console.dir(JSON.stringify(res.data)+"----");
+						//토큰 & memId 정보 저장
+				
+			}).catch(e => {
+				this.setInfo("실패", "", JSON.stringify(e.response || e.message));
+				console.log("로그인 오류");
+			});
+    },
+		login() {
+			storage.setItem("jwt-auth-token", "");
+			storage.setItem("login_memId", "");
+			axios.post("/api/logincheck/signin", {
+				memId: this.memId,
+				pw: this.pw
+			}).then(res => {
+				if (res.data.status) {
+					this.memId = "";
+					this.pw = "";
+					this.message = res.data.data.memId + "로 로그인 되었습니다";
+					console.dir(res.headers["jwt-auth-token"]);
+					//화면에 정보 출력
+					this.setInfo("로그인 성공", res.headers["jwt-auth-token"], JSON.stringify(res.data.data));
+					//토큰 & memId 정보 저장
+					storage.setItem("jwt-auth-token", res.headers["jwt-auth-token"]);
+					storage.setItem("login_memId", res.data.data.memId);
+					location.href="testpage.html";
+				} else {
+					this.setInfo("", "", "");
+					this.message = "로그인 하세요";
+					console.log("로그인 실패");
+					alert("입력 정보를 확인");
+				}
+			}).catch(e => {
+				this.setInfo("실패", "", JSON.stringify(e.response || e.message));
+				console.log("로그인 오류");
+			});
+		},
+		init() {
+			if (storage.getItem("jwt-auth-token")) {
+				this.message = storage.getItem("login_memId") + "로 로그인 되었습니다";
+			} else {
+				storage.setItem("jwt-auth-token", "");
+			}
+		} //init()
+	},
+	mounted() {
+		this.init();
+	}
+});
+</script>
+	</body>
+</html>
+
