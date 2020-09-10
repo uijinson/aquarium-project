@@ -1,0 +1,9 @@
+fish와 jwt 병합
+
+1.entity 개선
+2. repository
+	-사용자 정의 메소드
+3. 인증 index.html 화면 개선
+4. controller 개선
+5. start & 인터셉터 병합
+...

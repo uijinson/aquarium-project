@@ -48,6 +48,7 @@ public class MemberController {
 	@Autowired
 	private EquipmentRepository equipmentrepository;
 	
+	@Autowired
 	private VillainRepository vilRepository;
 	
 	public MemberController(MemberRepository repository) {
