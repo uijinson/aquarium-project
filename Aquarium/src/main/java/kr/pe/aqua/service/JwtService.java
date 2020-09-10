@@ -30,7 +30,7 @@ public class JwtService {
 	 * @return
 	 */
 	public String create(final Member member) {
-		
+		System.out.println(expireMin);
 		System.out.println("JwtService의 create()----");
 		log.trace("time : {} ", expireMin);
 		
@@ -39,7 +39,7 @@ public class JwtService {
 		builder.setHeaderParam("typ", "JWT");
 		
 		//토큰 제목설정, 유효기간, 담고 싶은 정보
-		builder.setSubject("로그인 토큰").setExpiration(new Date(System.currentTimeMillis() + 100*60*expireMin)).
+		builder.setSubject("로그인 토큰").setExpiration(new Date(System.currentTimeMillis() + 1000*60*expireMin)).
 		claim("Member", member).claim("second", "new data");
 		
 		//signature - secret key를 이용한 암호화

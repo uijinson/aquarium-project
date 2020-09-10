@@ -33,10 +33,11 @@ public class LoadDataBase {
 	public CommandLineRunner MemberInitDatabase(MemberRepository repository) {
 		return args -> {
 			log.info("Preloading "
-					+ repository.save(Member.builder().memId("aaa@naver.com").pw(11).nickName("b1").build()));
+					+ repository.save(Member.builder().memId("aaa@naver.com").pw(11).money(5000).nickName("b1").build()));
 			log.info("Preloading "
 					+ repository.save(Member.builder().memId("bbb@naver.com").pw(22).nickName("b2").build()));
-			log.info("Preloading " + repository.save(Member.builder().memId("aa").pw(1).nickName("1").build()));
+			log.info("Preloading " + repository.save(Member.builder().memId("aa").pw(1).nickName("a").build()));
+			log.info("Preloading " + repository.save(Member.builder().memId("1").pw(1).money(5000).nickName("1").build()));
 		};
 	}
 
@@ -45,8 +46,8 @@ public class LoadDataBase {
 	public CommandLineRunner FishinItDatabase(FishRepository repository) {
 
 		return args -> {
-			log.info("Preloading " + repository.save(Fish.builder().fishName("shark").fishExplain("wicked2").build()));
-			log.info("Preloading " + repository.save(Fish.builder().fishName("nimo").fishExplain("nimo").build()));
+			log.info("Preloading " + repository.save(Fish.builder().fishName("shark").fishExplain("wicked2").fishImg("/img/fish/shark.jpg").fishPrice(300).build()));
+			log.info("Preloading " + repository.save(Fish.builder().fishName("nimo").fishExplain("nimo").fishImg("/img/fish/nimo.jpg").fishPrice(600).build()));
 		};
 	}
 
@@ -55,11 +56,11 @@ public class LoadDataBase {
 	public CommandLineRunner AccessoryInitDatabase(AccessoryRepository repository) {
 		return args -> {
 			log.info("Preloading " + repository
-					.save(Accessory.builder().accName("sea plant").accExplain("sea plant1").accPrice(100).build()));
+					.save(Accessory.builder().accName("sea plant").accExplain("sea plant1").accImg("/img/acc/acc1.jpg").accPrice(100).build()));
 			log.info("Preloading " + repository
-					.save(Accessory.builder().accName("Mermaid").accExplain("Mermaid1").accPrice(200).build()));
+					.save(Accessory.builder().accName("Mermaid").accExplain("Mermaid1").accImg("/img/acc/acc2.jpg").accPrice(200).build()));
 			log.info("Preloading " + repository
-					.save(Accessory.builder().accName("SpongeBob").accExplain("SpongeBob1").accPrice(300).build()));
+					.save(Accessory.builder().accName("SpongeBob").accExplain("SpongeBob1").accImg("/img/acc/acc3.jpg").accPrice(300).build()));
 		};
 	}
 
@@ -68,9 +69,9 @@ public class LoadDataBase {
 	public CommandLineRunner EquipmentInitDatabase(EquipmentRepository repository) {
 		return args -> {
 			log.info("Preloading " + repository
-					.save(Equipment.builder().equipName("gun").equipExplain("gun1").equipPrice(100).build()));
+					.save(Equipment.builder().equipName("gun").equipExplain("gun1").equipImg("/img/equip/gun1.jpg").equipPrice(100).build()));
 			log.info("Preloading " + repository
-					.save(Equipment.builder().equipName("gun2").equipExplain("gun2").equipPrice(100).build()));
+					.save(Equipment.builder().equipName("gun2").equipExplain("gun2").equipImg("/img/equip/gun2.jpg").equipPrice(300).build()));
 		};
 	}
 
@@ -85,7 +86,7 @@ public class LoadDataBase {
  
 			log.info("Preloading " + repository.save(FishInventory.builder()
 					.fishId(Fish.builder().fishId(1L).fishName("shark").fishExplain("wicked2").fishHp(1).build())
-					.memId(Member.builder().memId("aa").pw(1).nickName("1").build()).build()));
+					.memId(Member.builder().memId("1").pw(1).nickName("1").build()).build()));
 		};
 	}
 
@@ -97,6 +98,10 @@ public class LoadDataBase {
 					.accId(Accessory.builder().accId(1L).accName("sea plant").accExplain("sea plant1").accPrice(100)
 							.build())
 					.memId(Member.builder().memId("aaa@naver.com").pw(11).nickName("b1").build()).build()));
+			log.info("Preloading " + repository.save(AccInventory.builder()
+					.accId(Accessory.builder().accId(1L).accName("sea plant").accExplain("sea plant1").accPrice(100)
+							.build())
+					.memId(Member.builder().memId("1").pw(1).nickName("b1").build()).build()));
 
 		};
 	}
@@ -109,7 +114,12 @@ public class LoadDataBase {
 					.equipId(Equipment.builder().equipId(1L).equipName("gun").equipExplain("gun1").equipPrice(100)
 							.build())
 					.memId(Member.builder().memId("aaa@naver.com").pw(11).nickName("b1").build()).build()));
-		};
+	
+		log.info("Preloading " + repository.save(EquipInventory.builder()
+				.equipId(Equipment.builder().equipId(1L).equipName("gun").equipExplain("gun1").equipPrice(100)
+						.build())
+				.memId(Member.builder().memId("1").pw(1).nickName("b1").build()).build()));
+	};
 	}
 
 	// villain

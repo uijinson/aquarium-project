@@ -5,4 +5,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface AccessoryRepository extends JpaRepository<Accessory, Long> {
 
+	public Accessory findAccPriceByAccId(Long accId);
+
 }

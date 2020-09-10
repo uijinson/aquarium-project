@@ -1,8 +1,10 @@
 package kr.pe.aqua.controller;
 
+import java.util.Map;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -13,12 +15,11 @@ import org.springframework.web.bind.annotation.RestController;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
-import kr.pe.aqua.model.Accessory;
-import kr.pe.aqua.model.Equipment;
-import kr.pe.aqua.model.Fish;
+import kr.pe.aqua.model.AccessoryRepository;
+import kr.pe.aqua.model.EquipmentRepository;
+import kr.pe.aqua.model.FishRepository;
 import kr.pe.aqua.model.Member;
 import kr.pe.aqua.model.MemberRepository;
-import kr.pe.aqua.model.Villain;
 import kr.pe.aqua.model.VillainRepository;
 
 @RestController
@@ -38,6 +39,15 @@ public class MemberController {
 
 	//singleton
 	private final MemberRepository repository;
+	@Autowired
+	private FishRepository fishrepository;
+	
+	@Autowired
+	private AccessoryRepository accessoryrepository;
+	
+	@Autowired
+	private EquipmentRepository equipmentrepository;
+	
 	private VillainRepository vilRepository;
 	
 	public MemberController(MemberRepository repository) {
@@ -100,32 +110,121 @@ public class MemberController {
 
 
 	//3. 상점 -> 물고기/악세서리/장비 ????구매하면 -> 구매금만큼 돈이 감소(- : update)
+//	@SuppressWarnings("unlikely-arg-type")
+//	@ApiOperation(value = "afterBuyMoney() 메소드 사용", notes = "물고기/악세서리/장비 구매 후, 돈 감소")
+//	@PutMapping("/money/{table}/{id}")
+//	public void afterBuyMoney(@ApiParam(value = "이메일을 입력해주세요", required = true) @RequestParam String memId, 
+//			@PathVariable String table, @PathVariable String id, 
+//			@RequestBody Fish fish,
+//			@RequestBody Member member, 
+//			@RequestBody Accessory accessory,
+//			@RequestBody Equipment equipment) {
+//		
+//		if(table.equals("Fish")) {
+//			if(id.equals(fish.getFishId())) {
+//				member.setMoney(member.getMoney() - fish.getFishPrice());
+//				repository.save(member);
+//			}
+//		}else if(table.equals("Accessory")) {
+//			if(id.equals(accessory.getAccId())) {
+//				member.setMoney(member.getMoney() - accessory.getAccPrice());
+//				repository.save(member);
+//			}
+//		}else if(table.equals("Equipment")) {
+//			if(id.equals(equipment.getEquipId())) {
+//				member.setMoney(member.getMoney() - equipment.getEquipPrice());
+//				repository.save(member);
+//			}
+//		}
+//
+//	}
+	
+	// 3-1. 물고기 상점 -> 물고기 구매시 -> 구매금만큼 돈이 감소( - : update)
 	@SuppressWarnings("unlikely-arg-type")
-	@ApiOperation(value = "afterBuyMoney() 메소드 사용", notes = "물고기/악세서리/장비 구매 후, 돈 감소")
-	@PutMapping("/money/{table}/{id}")
-	public void afterBuyMoney(@ApiParam(value = "이메일을 입력해주세요", required = true) @RequestParam String memId, 
-			@PathVariable String table, @PathVariable String id, 
-			@RequestBody Fish fish,
-			@RequestBody Member member, 
-			@RequestBody Accessory accessory,
-			@RequestBody Equipment equipment) {
+	@ApiOperation(value = "afterBuyFishMoney() 메소드 사용", notes = "물고기 구매 후, 돈 감소")
+	@PutMapping("/money/fish")
+	public boolean afterBuyFishMoney(@RequestBody Map<String,String> param) {
+		String memId = param.get("memId");
+		Long fishId = Long.parseLong(param.get("fishId"));
+	
+		System.out.println("풋매핑"+memId);
+		System.out.println("----"+fishId);
+			
 		
-		if(table.equals("Fish")) {
-			if(id.equals(fish.getFishId())) {
-				member.setMoney(member.getMoney() - fish.getFishPrice());
-				repository.save(member);
-			}
-		}else if(table.equals("Accessory")) {
-			if(id.equals(accessory.getAccId())) {
-				member.setMoney(member.getMoney() - accessory.getAccPrice());
-				repository.save(member);
-			}
-		}else if(table.equals("Equipment")) {
-			if(id.equals(equipment.getEquipId())) {
-				member.setMoney(member.getMoney() - equipment.getEquipPrice());
-				repository.save(member);
-			}
+		int memMoney = repository.findMoneyByMemId(memId).getMoney();
+		int fishPrice = fishrepository.findFishPriceByFishId(fishId).getFishPrice();
+		Member member = repository.findMoneyByMemId(memId);
+		System.out.println("--멤버찾기"+member);
+		if (memMoney-fishPrice>=0) {
+			member.setMoney(memMoney-fishPrice);
+			repository.save(member);
+			System.out.println(member);
+			return true;
 		}
+		
+		return false;
+		
+	     //System.out.println("--여기는 피시머니"+repository.findMoneyByMemId(memId).getMoney());
+	     //fishrepository.findAll()
+	     //fishrepository.findFishPriceByFishId(fid).getFishPrice();
+		 //System.out.println("머니머니="+fishrepository.findById(fid));
+	     //System.out.println("머니="+fishrepository.findFishPriceByFishId(fid).getFishPrice());
+	      
+//	      if (memId.equals(member.getMemId())) {
+//	         member.setMoney(member.getMoney() - fish.getFishPrice());
+//	         repository.save(member);
+//	      }
+	   }
 
-	}
+	   // 3-2. 악세서리 상점 -> 장비 구매시 -> 구매금만큼 돈이 감소
+	   @SuppressWarnings("unlikely-arg-type")
+	   @ApiOperation(value = "afterBuyAccMoney() 메소드 사용", notes = "악세사리 구매 후, 돈 감소")
+	   @PutMapping("/money/acc")
+	   public boolean afterBuyAccMoney( @RequestBody Map<String,String> param) {
+		   	String memId = param.get("memId");
+			Long accId = Long.parseLong(param.get("accId"));
+		
+			System.out.println("풋매핑"+memId);
+			System.out.println("----"+accId);
+			
+			int memMoney = repository.findMoneyByMemId(memId).getMoney();
+			int accPrice = accessoryrepository.findAccPriceByAccId(accId).getAccPrice();
+			Member member = repository.findMoneyByMemId(memId);
+			System.out.println("--멤버찾기"+member);
+			if (memMoney-accPrice>=0) {
+				member.setMoney(memMoney-accPrice);
+				repository.save(member);
+				System.out.println(member);
+				return true;
+			}
+			return false;
+	   }
+
+	   // 3-3. 장비 상점 -> 장비 구매시 -> 구매금만큼 돈이 감소
+	   @SuppressWarnings("unlikely-arg-type")
+	   @ApiOperation(value = "afterBuyEquipMoney() 메소드 사용", notes = "물고기 구매 후, 돈 감소")
+	   @PutMapping("/money/equipment")
+	   public boolean afterBuyEquipMoney(@RequestBody Map<String,String> param) {
+
+		   	String memId = param.get("memId");
+			Long equipid = Long.parseLong(param.get("equipId"));
+			
+			System.out.println("풋매핑"+memId);
+			System.out.println("----"+equipid);
+
+			int memMoney = repository.findMoneyByMemId(memId).getMoney();
+			int equipPrice = equipmentrepository.findEquipPriceByEquipId(equipid).getEquipPrice();
+			
+			Member member = repository.findMoneyByMemId(memId);
+			
+			System.out.println("--멤버찾기"+member);
+			if (memMoney-equipPrice>=0) {
+				member.setMoney(memMoney-equipPrice);
+				repository.save(member);
+				System.out.println(member);
+				return true;
+			}
+			return false;
+	   }
+
 }

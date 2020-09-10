@@ -3,74 +3,185 @@ var app = new Vue({
 	el: '#app',
 	data: {
 		shopInventory: {
-			fish: [],
-			equip: [],
-			acc: []
+			fish: "",
+			acc: "",
+			equip:""
 		},
-		memId: "",
-		bowlName: "",
-		message: "로그인 하세요",
+		myInventory:{
+			fish: "",
+			acc: "",
+			equip:""
+		},
 		status: "",
 		token: "",
-		info: "",
-		detailInfo: "",
 		result: false,
-		shopView: false
+		shopView: false,
+		invenView: false
 	},
 	methods: {
 		shopOpen() {
 			this.shopView = !this.shopView;
-			console.log("aa--" + this.shopInventory);
-			this.shop()
+			if (this.shopInventory.fish=="")
+			{this.shop();}
+		},
+		invenOpen() {
+			this.invenView = !this.invenView;
+			if (this.myInventory.fish=="")
+			{this.inven();}
+		},
+		logout() {
+			storage.setItem("jwt-auth-token", "");
+			storage.setItem("login_memId", "");
+			this.result = false;
+			location.href = "index.html";
+		},
+		buy(v){
+			console.log("aaa"+v.fishImg.split("/")[2]);
+			if(v.fishImg.split("/")[2]="fish"){
+
+			
+			//물고기 저장
+			// axios.get("testpage/fish/buyFish",{
+			// 	params: { memId: storage.getItem("login_memId"),
+			// 	fishId: v.fishId},
+			// 	headers: {
+			// 		"jwt-auth-token": storage.getItem("jwt-auth-token")
+			// 	}
+			// }).then(res => {
+			// 	//this.myInventory.fish=res.data;
+			// 	console.log("inven--fish--"+JSON.stringify(res.data));
+				
+			// }).catch(e => {
+			// 	console.log("save fish 오류"+JSON.stringify(e.response || e.message));
+			// });
+			//////////reload myInventory.fish//// this.inven();
+			} else if(v.fishImg.split("/")[2]=="acc"){
+				//acc저장
+			// axios.get("testpage/fish/buyFish",{
+			// 	params: { memId: storage.getItem("login_memId"),
+			// 	fishId: v.fishId},
+			// 	headers: {
+			// 		"jwt-auth-token": storage.getItem("jwt-auth-token")
+			// 	}
+			// }).then(res => {
+			// 	//this.myInventory.fish=res.data;
+			// 	console.log("inven--fish--"+JSON.stringify(res.data));
+				
+			// }).catch(e => {
+			// 	console.log("save fish 오류"+JSON.stringify(e.response || e.message));
+			// });
+			//////////reload myInventory.fish//// this.inven();
+			} else if(v.fishImg.split("/")[2]=="equip"){
+				//equip 저장
+			// axios.get("testpage/fish/buyFish",{
+			// 	params: { memId: storage.getItem("login_memId"),
+			// 	fishId: v.fishId},
+			// 	headers: {
+			// 		"jwt-auth-token": storage.getItem("jwt-auth-token")
+			// 	}
+			// }).then(res => {
+			// 	//this.myInventory.fish=res.data;
+			// 	console.log("inven--fish--"+JSON.stringify(res.data));
+				
+			// }).catch(e => {
+			// 	console.log("save fish 오류"+JSON.stringify(e.response || e.message));
+			// });
+			//////////reload myInventory.fish//// this.inven();
+			} else {console.log("no match col");}
+			//돈 계산
+			axios.put("api/money/fish",{
+				memId: storage.getItem("login_memId"),
+				fishId: v.fishId},{
+				headers: {
+					"jwt-auth-token": storage.getItem("jwt-auth-token")
+				}}
+			).then(res => {
+				//this.myInventory.fish=res.data;
+				console.log("inven-money-fish--"+res.data);
+				
+			}).catch(e => {
+				console.log("calculate price fish 오류"+JSON.stringify(e.response || e.message));
+			});
+			
+		},
+		sell(v){
+
 		},
 		shop() {
-			axios.get("api/allfish", {
-			},{
+			axios.get("api/allfish",{
 				headers: {
 					"jwt-auth-token": storage.getItem("jwt-auth-token")
 				}
 			}).then(res => {
-				console.dir(JSON.stringify(res.data) + "----");
-				//토큰 & memId 정보 저장
-				this.shopInventory.fish=JSON.stringify(res.data);
-				
+				this.shopInventory.fish=res.data;
 				console.log(this.shopInventory.fish);
-
+				
 			}).catch(e => {
-				this.setInfo("실패", "", JSON.stringify(e.response || e.message));
-				console.log("로그인 오류");
+				console.log("allfish 오류"+JSON.stringify(e.response || e.message));
 			});
-			axios.get("api/allEquipments", {
-			},{
+			
+			axios.get("api/allEquipments",{
 				headers: {
 					"jwt-auth-token": storage.getItem("jwt-auth-token")
 				}
 			}).then(res => {
-					console.dir(JSON.stringify(res.data)+"----");
-						//토큰 & memId 정보 저장
-						this.shopInventory.equip=JSON.stringify(res.data);
+				this.shopInventory.equip=res.data
+				console.log(this.shopInventory.equip);
 				
-						console.log(this.shopInventory.equip);
-
 			}).catch(e => {
-				this.setInfo("실패", "", JSON.stringify(e.response || e.message));
-				console.log("로그인 오류");
+				console.log("allEquipments 오류"+JSON.stringify(e.response || e.message));
 			});
-			axios.get("api/allAccessories",  {
-			},{
+			
+			axios.get("api/allAccessories",{
 				headers: {
 					"jwt-auth-token": storage.getItem("jwt-auth-token")
 				}
 			}).then(res => {
-					console.dir(JSON.stringify(res.data)+"----");
-						//토큰 & memId 정보 저장
-						this.shopInventory.acc=JSON.stringify(res.data);
+				this.shopInventory.acc=res.data
+				console.log(this.shopInventory.acc);
 				
-						console.log(this.shopInventory.acc);
-
 			}).catch(e => {
-				this.setInfo("실패", "", JSON.stringify(e.response || e.message));
-				console.log("로그인 오류");
+				console.log("allAccessories 오류"+JSON.stringify(e.response || e.message));
+			});
+		},
+		inven() {
+			axios.get("testpage/fish/select",{
+				params: { memId: storage.getItem("login_memId")},
+				headers: {
+					"jwt-auth-token": storage.getItem("jwt-auth-token")
+				}
+			}).then(res => {
+				this.myInventory.fish=res.data;
+				console.log("inven--fish--"+this.myInventory.fish);
+				
+			}).catch(e => {
+				console.log("myInventory fish 오류"+JSON.stringify(e.response || e.message));
+			});
+			
+			axios.get("testpage/equipment/select",{
+				params: { memId: storage.getItem("login_memId")},
+				headers: {
+					"jwt-auth-token": storage.getItem("jwt-auth-token")
+				}
+			}).then(res => {
+				this.myInventory.equip=res.data
+				console.log("inven--equip--"+this.myInventory.equip);
+				
+			}).catch(e => {
+				console.log("allEquipments 오류"+JSON.stringify(e.response || e.message));
+			});
+			
+			axios.get("testpage/accessory/select",{
+				params: { memId: storage.getItem("login_memId")},
+				headers: {
+					"jwt-auth-token": storage.getItem("jwt-auth-token")
+				}
+			}).then(res => {
+				this.myInventory.acc=res.data
+				console.log("inven--acc--"+this.myInventory.acc);
+				
+			}).catch(e => {
+				console.log("allAccessories 오류"+JSON.stringify(e.response || e.message));
 			});
 		},
 		init() {
@@ -79,56 +190,9 @@ var app = new Vue({
 			} else {
 				storage.setItem("jwt-auth-token", "");
 			}
-		} //init()
+		}
 	},
 	mounted() {
 		this.init();
 	}
 });
-
-filterSelection("all")
-
-function filterSelection(c) {
-	var x, i;
-	x = document.getElementsByClassName("column");
-	if (c == "all") c = "";
-	for (i = 0; i < x.length; i++) {
-		w3RemoveClass(x[i], "show");
-		if (x[i].className.indexOf(c) > -1) w3AddClass(x[i], "show");
-	}
-}
-
-function w3AddClass(element, name) {
-	var i, arr1, arr2;
-	arr1 = element.className.split(" ");
-	arr2 = name.split(" ");
-	for (i = 0; i < arr2.length; i++) {
-		if (arr1.indexOf(arr2[i]) == -1) {
-			element.className += " " + arr2[i];
-		}
-	}
-}
-
-function w3RemoveClass(element, name) {
-	var i, arr1, arr2;
-	arr1 = element.className.split(" ");
-	arr2 = name.split(" ");
-	for (i = 0; i < arr2.length; i++) {
-		while (arr1.indexOf(arr2[i]) > -1) {
-			arr1.splice(arr1.indexOf(arr2[i]), 1);
-		}
-	}
-	element.className = arr1.join(" ");
-}
-
-
-// Add active class to the current button (highlight it)
-var btnContainer = document.getElementById("myBtnContainer");
-var btns = btnContainer.getElementsByClassName("btn");
-for (var i = 0; i < btns.length; i++) {
-	btns[i].addEventListener("click", function () {
-		var current = document.getElementsByClassName("active");
-		current[0].className = current[0].className.replace(" active", "");
-		this.className += " active";
-	});
-}
