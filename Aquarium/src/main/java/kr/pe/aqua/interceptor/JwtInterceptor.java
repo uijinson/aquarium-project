@@ -27,6 +27,13 @@ public class JwtInterceptor implements HandlerInterceptor {
 		
 		System.out.println("요청 url " + req.getMethod() + " : " + req.getServletPath());
 
+<<<<<<< HEAD
+=======
+		// request의 parameter에서 auth_token으로 넘어온 녀석을 검색
+		System.out.println("---- " + req.getHeader("jwt-auth-token"));
+System.out.println("토토큰큰"+req.getHeader("login_memId"));
+System.out.println("토토"+req.getHeader("abc"));
+>>>>>>> 0f3fdd778ad88b3ef0ac9decedb82e72e2c4855a
 		String token = req.getHeader("jwt-auth-token");
 		System.out.println("token ----------"+token);
 		if (token != null && token.length() > 0) {

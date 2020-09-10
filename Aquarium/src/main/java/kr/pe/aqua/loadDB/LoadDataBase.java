@@ -36,8 +36,13 @@ public class LoadDataBase {
 					+ repository.save(Member.builder().memId("aaa@naver.com").pw(11).nickName("b1").build()));
 			log.info("Preloading "
 					+ repository.save(Member.builder().memId("bbb@naver.com").pw(22).nickName("b2").build()));
+<<<<<<< HEAD
 			log.info("Preloading " + repository.save(Member.builder().memId("aa").pw(1).nickName("a").build()));
 			log.info("Preloading " + repository.save(Member.builder().memId("1").pw(1).nickName("1").build()));
+=======
+			log.info("Preloading "
+					+ repository.save(Member.builder().memId("1").pw(1).nickName("1").build()));
+>>>>>>> 0f3fdd778ad88b3ef0ac9decedb82e72e2c4855a
 		};
 	}
 

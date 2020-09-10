@@ -24,8 +24,37 @@ import kr.pe.aqua.model.FishRepository;
 @Api(value = "FishController specification v1")
 @RequestMapping("/api")
 public class FishController {
+<<<<<<< HEAD
 
    private final FishRepository repository;
+=======
+	
+	
+	private final FishRepository repository;
+	public FishController(FishRepository repository) {
+		this.repository = repository;
+	}
+	
+	@ApiResponses({
+		@ApiResponse(code = 200, message = "맞아요!"),
+		@ApiResponse(code = 500, message = "서버 에러"),
+		@ApiResponse(code = 403, message = "금지"),
+		@ApiResponse(code = 404, message = "어디있지?"),
+		@ApiResponse(code = 401, message = "허가노노") })
+	
+	@GetMapping("/allfish")
+	List<Fish> all() {
+		return repository.findAll();
+	}
+	
+	@ApiOperation(value="newFish() 메소드 사용", notes="새로운 물고기 추가")
+	@GetMapping("/fishes")
+	public Fish newFish(@ApiParam(value = "물고기 이름을 지어주세요", required = true) @RequestParam String fishName,
+						@ApiParam(value = "물고기를 소개해주세요", required= true) @RequestParam String fishExplain) {
+		Fish newFish = Fish.builder().fishName(fishName).fishExplain(fishExplain).build();
+		return repository.save(newFish);
+	}
+>>>>>>> 0f3fdd778ad88b3ef0ac9decedb82e72e2c4855a
 
    public FishController(FishRepository repository) {
       this.repository = repository;
