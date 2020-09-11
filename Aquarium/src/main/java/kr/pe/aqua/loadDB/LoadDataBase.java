@@ -43,8 +43,8 @@ public class LoadDataBase {
 	@Bean
 	public CommandLineRunner FishinItDatabase(FishRepository repository) {
 		return args -> {
-			log.info("Preloading " + repository.save(Fish.builder().fishName("shark").fishExplain("wicked2").fishImg("/img/fish/shark.jpg").fishPrice(300).build()));
-			log.info("Preloading " + repository.save(Fish.builder().fishName("nimo").fishExplain("nimo").fishImg("/img/fish/nimo.jpg").fishPrice(600).build()));
+			log.info("Preloading " + repository.save(Fish.builder().fishName("turtle").fishExplain("귀여운 거북이").fishImg("/img/fish/turtle.jpg").fishPrice(300).build()));
+			log.info("Preloading " + repository.save(Fish.builder().fishName("alligator").fishExplain("귀여운 악어").fishImg("/img/fish/alligator.jpg").fishPrice(600).build()));
 		};
 	}
 
@@ -73,11 +73,11 @@ public class LoadDataBase {
 		return args -> {
 
 			log.info("Preloading " + repository.save(FishInventory.builder()
-					.fishId(Fish.builder().fishId(1L).fishName("shark").fishExplain("wicked2").fishHp(1).build())
+					.fishId(Fish.builder().fishId(1L).fishName("turtle").fishExplain("귀여운 거북이").fishHp(1).build())
 					.memId(Member.builder().memId("aaa@naver.com").pw(11).nickName("b1").build()).build()));
  
 			log.info("Preloading " + repository.save(FishInventory.builder()
-					.fishId(Fish.builder().fishId(1L).fishName("shark").fishExplain("wicked2").fishHp(1).build())
+					.fishId(Fish.builder().fishId(1L).fishName("alligator").fishExplain("무서운 악어").fishHp(1).build())
 					.memId(Member.builder().memId("1").pw(1).nickName("1").build()).build()));
 		};
 	}

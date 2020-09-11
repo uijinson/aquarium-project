@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+​
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Document</title>
+<link rel="stylesheet" type="text/css" href="index.css">
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+<script type="text/javascript" src="JS/index.js"></script>
+</head>
+​
+
+<body>
+	<div id="app" class="container" :class="classList">
+		<!-- Sign Up -->
+		<div id="signUpForm">
+			<div class="container__form container--signup">
+				<form action="#" class="form" id="form1">
+					<h2 class="form__title">Sign Up</h2>
+					<input type="text" placeholder="Email" class="input"
+						v-model="memId" name="memId" required /> <input type="password"
+						placeholder="Password" class="input" v-model="pw" name="pw"
+						required /> <input type="password" placeholder="Repeat Password"
+						class="input" name="psw-repeat" required /> <input type="text"
+						placeholder="Enter Fish-Bowl-Name" class="input"
+						v-model="bowlName" name="bowlName" required />
+					<button class="btn" type="submit" @click="signUp">Sign Up</button>
+				</form>
+			</div>
+		</div>
+
+		<!-- Sign In -->
+		<div id="signInForm">
+			<div class="container__form container--signin">
+				<form action="#" class="form" id="form2">
+					<h2 class="form__title">Sign In</h2>
+					<input type="text" placeholder="Email" class="input"
+						v-model="memId" name="memId" required /> <input type="password"
+						placeholder="Password" class="input" v-model="pw" name="pw"
+						required /> <a href="#" class="link">Forgot your password?</a>
+
+					<button class="btn" type="submit" @click="login">Sign In</button>
+				</form>
+			</div>
+		</div>
+	
+		<!-- Overlay -->
+		<div class="container__overlay">
+			<div class="overlay">
+				<div class="overlay__panel overlay--left">
+					<button class="btn" id="signIn" @click="signInbnt">Sign In</button>
+				</div>
+				<div class="overlay__panel overlay--right">
+					<button class="btn" id="signUp" @click="signupbnt">Sign Up</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+
+</html>
