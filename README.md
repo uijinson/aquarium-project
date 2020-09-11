@@ -6,6 +6,7 @@
 - Vue
 - html & css
 - JWT
+- three.js
 
 ## ❤️ 참여자
 - :octocat: [Son UiJin](https://github.com/uijinson) 
