@@ -32,10 +32,8 @@ public class LoadDataBase {
 	@Bean
 	public CommandLineRunner MemberInitDatabase(MemberRepository repository) {
 		return args -> {
-			log.info("Preloading "
-					+ repository.save(Member.builder().memId("aaa@naver.com").pw(11).money(5000).nickName("b1").build()));
-			log.info("Preloading "
-					+ repository.save(Member.builder().memId("bbb@naver.com").pw(22).nickName("b2").build()));
+			log.info("Preloading " + repository.save(Member.builder().memId("aaa@naver.com").pw(11).money(5000).nickName("b1").build()));
+			log.info("Preloading " + repository.save(Member.builder().memId("bbb@naver.com").pw(22).nickName("b2").build()));
 			log.info("Preloading " + repository.save(Member.builder().memId("aa").pw(1).nickName("a").build()));
 			log.info("Preloading " + repository.save(Member.builder().memId("1").pw(1).money(5000).nickName("1").build()));
 		};
@@ -44,7 +42,6 @@ public class LoadDataBase {
 	// fish
 	@Bean
 	public CommandLineRunner FishinItDatabase(FishRepository repository) {
-
 		return args -> {
 			log.info("Preloading " + repository.save(Fish.builder().fishName("shark").fishExplain("wicked2").fishImg("/img/fish/shark.jpg").fishPrice(300).build()));
 			log.info("Preloading " + repository.save(Fish.builder().fishName("nimo").fishExplain("nimo").fishImg("/img/fish/nimo.jpg").fishPrice(600).build()));
@@ -55,12 +52,9 @@ public class LoadDataBase {
 	@Bean
 	public CommandLineRunner AccessoryInitDatabase(AccessoryRepository repository) {
 		return args -> {
-			log.info("Preloading " + repository
-					.save(Accessory.builder().accName("sea plant").accExplain("sea plant1").accImg("/img/acc/acc1.jpg").accPrice(100).build()));
-			log.info("Preloading " + repository
-					.save(Accessory.builder().accName("Mermaid").accExplain("Mermaid1").accImg("/img/acc/acc2.jpg").accPrice(200).build()));
-			log.info("Preloading " + repository
-					.save(Accessory.builder().accName("SpongeBob").accExplain("SpongeBob1").accImg("/img/acc/acc3.jpg").accPrice(300).build()));
+			log.info("Preloading " + repository.save(Accessory.builder().accName("sea plant").accExplain("sea plant1").accImg("/img/acc/acc1.jpg").accPrice(100).build()));
+			log.info("Preloading " + repository.save(Accessory.builder().accName("Mermaid").accExplain("Mermaid1").accImg("/img/acc/acc2.jpg").accPrice(200).build()));
+			log.info("Preloading " + repository.save(Accessory.builder().accName("SpongeBob").accExplain("SpongeBob1").accImg("/img/acc/acc3.jpg").accPrice(300).build()));
 		};
 	}
 
@@ -68,10 +62,8 @@ public class LoadDataBase {
 	@Bean
 	public CommandLineRunner EquipmentInitDatabase(EquipmentRepository repository) {
 		return args -> {
-			log.info("Preloading " + repository
-					.save(Equipment.builder().equipName("gun").equipExplain("gun1").equipImg("/img/equip/gun1.jpg").equipPrice(100).build()));
-			log.info("Preloading " + repository
-					.save(Equipment.builder().equipName("gun2").equipExplain("gun2").equipImg("/img/equip/gun2.jpg").equipPrice(300).build()));
+			log.info("Preloading " + repository.save(Equipment.builder().equipName("gun").equipExplain("gun1").equipImg("/img/equip/gun1.jpg").equipPrice(100).build()));
+			log.info("Preloading " + repository.save(Equipment.builder().equipName("gun2").equipExplain("gun2").equipImg("/img/equip/gun2.jpg").equipPrice(300).build()));
 		};
 	}
 

@@ -84,7 +84,7 @@ window.onload = function(){
 	                    //토큰 & memId 정보 저장
 	                    storage.setItem("jwt-auth-token", res.headers["jwt-auth-token"]);
 	                    storage.setItem("login_memId", res.data.data.memId);
-	                    location.href = "testpage.html";
+	                    location.href = "mainpage.html";
 	                } else {
 	                    this.setInfo("", "", "");
 	                    this.message = "로그인 하세요";

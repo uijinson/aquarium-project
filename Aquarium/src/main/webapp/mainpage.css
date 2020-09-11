@@ -1,0 +1,76 @@
+* {
+  box-sizing: border-box;
+}
+.canvas{
+  height:70%;
+  width: 100%;
+}
+body {
+  background-color: #f1f1f1;
+  padding: 20px;
+  font-family: Arial;
+}
+
+/* Center website */
+
+h1 {
+  font-size: 50px;
+  word-break: break-all;
+}
+
+
+/* Add padding BETWEEN each column */
+.row > .column {
+  padding: 8px;
+}
+
+/* Create three equal columns that floats next to each other */
+.column {
+  float: left;
+  width: 25%;
+  display: none; /* Hide all elements by default */
+}
+
+/* Clear floats after rows */ 
+img{
+	
+}
+
+/* Content */
+.content {
+  background-color: white;
+  text-align:center;
+  padding: 5px;
+  width:100%;
+  height:340px;
+}
+#div{
+height: 0px;
+width: 0px
+}
+/* The "show" class is added to the filtered elements */
+.show {
+  display: block;
+}
+.contentimg{
+width:100px;
+height:100px;
+}
+/* Style the buttons */
+.btn {
+	text-align:center;
+  border: none;
+  outline: none;
+  padding: 12px 16px;
+  background-color: white;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background-color: #ddd;
+}
+
+.btn.active {
+  background-color: #666;
+  color: white;
+}

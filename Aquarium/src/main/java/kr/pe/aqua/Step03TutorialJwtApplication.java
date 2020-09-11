@@ -12,32 +12,26 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import kr.pe.aqua.interceptor.JwtInterceptor;
 
 @SpringBootApplication
-public class Step03TutorialJwtApplication implements WebMvcConfigurer{
+public class Step03TutorialJwtApplication implements WebMvcConfigurer {
 
 	@Autowired
 	private JwtInterceptor jwtInterceptor;
-	
+
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
 		System.out.println("addInterceptors() --");
 		registry.addInterceptor(jwtInterceptor).addPathPatterns("/api/**")
-		.excludePathPatterns(Arrays.asList("/css/**","/script/**","/plugin/**"))
-		.excludePathPatterns("/api/logincheck/signin").excludePathPatterns("/api/fish/select/**")
-		.excludePathPatterns("/api/members");
+				.excludePathPatterns(Arrays.asList("/css/**", "/script/**", "/plugin/**"))
+				.excludePathPatterns("/api/logincheck/signin").excludePathPatterns("/api/fish/select/**")
+				.excludePathPatterns("/api/members");
 	}
-	
+
 	@Override
 	public void addCorsMappings(CorsRegistry registry) {
 		System.out.println("addCorsMappings() --");
-		registry.addMapping("/**")
-		.allowedOrigins("*")
-		.allowedMethods("*")
-		.allowedHeaders("*")
-		.allowedHeaders("jwt-auth-token");
+		registry.addMapping("/**").allowedOrigins("*").allowedMethods("*").allowedHeaders("*").allowedHeaders("jwt-auth-token");
 	}
-	
-	
-	
+
 	public static void main(String[] args) {
 		SpringApplication.run(Step03TutorialJwtApplication.class, args);
 	}

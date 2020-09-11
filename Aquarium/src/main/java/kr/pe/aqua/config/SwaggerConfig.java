@@ -20,13 +20,12 @@ public class SwaggerConfig {
                 .apis(RequestHandlerSelectors.basePackage("kr.pe.aqua.controller"))
                 .paths(PathSelectors.any())
                 .build();
-                //.useDefaultResponseMessages(false); // 기본으로 세팅되는 200,401,403,404 메시지를 표시 하지 않음
     }
 
     private ApiInfo swaggerInfo() {
         return new ApiInfoBuilder().title("Fish aquarium API Documentation")
                 .description("팀원 : 이재형, 김순영, 손의진, 이수민이 소개하는 아쿠아리움에 오신 것을 환영합니다~")
-                .license("물고기를 만나러 가볼까요?").licenseUrl("https://www.susansijang.co.kr/nsis/miw/intro").version("2").build();
+                .license("마스크 빌런으로부터 우리의 해양생태계를 지켜볼까요?").licenseUrl("https://imnews.imbc.com/replay/2020/nwtoday/article/5740328_32531.html").version("2").build();
     }
 }
 

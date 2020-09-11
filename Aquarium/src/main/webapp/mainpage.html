@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Demo 09</title>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="JS/jquery-1.7.2.min.js"></script>
+<script src="JS/three.js"></script>
+<script src="JS/Three.FirstPersonControls.js"></script>
+<script src="JS/MTLLoader.js"></script>
+<script src="JS/OBJLoader.js"></script>
+<script src="JS/Projector.js"></script>
+<script src="JS/main.js"></script>
+<script src="JS/mainpage.js" defer></script>
+<script src="JS/filter.js" defer></script>
+<link rel="stylesheet" href="demo.css">
+<link rel="stylesheet" href="mainpage.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+
+	<audio controls autoplay="autoplay">
+  <source src="./images/music.mp3" type="audio/mpeg">
+</audio>
+<!--
+<audio controls>
+  <source src="./images/music.mp3" type="audio/mpeg">
+</audio>
+-->	
+	<div id="app" class="icon-bar">
+		<button class="btn" @click="logout">
+			<i class="fa fa-power-off"></i> Log out
+		</button>
+		<button class="btn" @click="shopOpen">
+			<i class="fa fa-bars"></i> Shop
+		</button>
+		<button class="btn" @click="invenOpen">
+			<i class="fa fa-shopping-basket"></i> Inventory
+		</button>
+		<button class="btn" @click="loadM">
+			<i class="fa fa-save"></i> {{money}}
+		</button>
+
+
+		<div id="shopForm" v-if="shopView" class="main">
+			<h2>SHOP</h2>
+			<div id="myBtnContainer">
+				<button class="btn active" onclick="filterSelection('all')">
+					Show all</button>
+				<button class="btn" onclick="filterSelection('fish')">fish</button>
+				<button class="btn" onclick="filterSelection('acc')">acc</button>
+				<button class="btn" onclick="filterSelection('equip')">equip</button>
+			</div>
+
+			<div id="shop" class="row" v-for="v in shopInventory.fish">
+				<div class="column fish">
+					<div class="content">
+						<img :src="v.fishImg" :alt="v.fishName" style="width: 30%">
+						<h4>{{v.fishName}}</h4>
+						<p>{{v.fishExplain}}</p>
+						<p>price : {{v.fishPrice}}</p>
+						<p>
+							<button class="button" @click="buyFish(v)">구입</button>
+						</p>
+					</div>
+				</div>
+			</div>
+
+			<div id="shop" class="row" v-for="v in shopInventory.acc">
+				<div class="column acc">
+					<div class="content">
+						<img :src="v.accImg" :alt="v.accName" style="width: 30%">
+						<h4>{{v.accName}}</h4>
+						<p>{{v.accExplain}}</p>
+						<p>price : {{v.accPrice}}</p>
+						<p>
+							<button class="button" @click="buyAcc(v)">구입</button>
+						</p>
+					</div>
+				</div>
+			</div>
+
+			<div id="shop" class="row" v-for="v in shopInventory.equip">
+				<div class="column equip">
+					<div class="content">
+						<img :src="v.equipImg" :alt="v.equipName" style="width: 30%">
+						<h4>{{v.equipName}}</h4>
+						<p>{{v.equipExplain}}</p>
+						<p>price : {{v.equipPrice}}</p>
+						<p>
+							<button class="button" @click="buyEquip(v)">구입</button>
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!--인벤토리-->
+		<div id="shopForm" v-if="invenView" class="main">
+			<h2>Inventory</h2>
+			<div id="myBtnContainer">
+				<button class="btn active" onclick="filterSelection('all')">Show all</button>
+				<button class="btn" onclick="filterSelection('fish')">fish</button>
+				<button class="btn" onclick="filterSelection('acc')">acc</button>
+				<button class="btn" onclick="filterSelection('equip')">equip</button>
+			</div>
+
+			<div id="shop" class="row" v-for="v in myInventory.fish">
+				<div class="column fish">
+					<div class="content">
+						<img :src="v.fishId.fishImg" :alt="v.fishName" style="width: 30%">
+						<h4>{{v.fishId.fishName}}</h4>
+						<p>{{v.fishId.fishExplain}}</p>
+						<p>price : {{v.fishId.fishPrice*0.6}}</p>
+						<p>
+							<button class="button" @click="sellFish(v)">팔기</button>
+						</p>
+					</div>
+				</div>
+			</div>
+
+			<div id="shop" class="row" v-for="v in myInventory.acc">
+				<div class="column acc">
+					<div class="content">
+						<img :src="v.accId.accImg" :alt="v.accName" style="width: 30%">
+						<h4>{{v.accId.accName}}</h4>
+						<p>{{v.accId.accExplain}}</p>
+						<p>price : {{v.accId.accPrice*0.6}}</p>
+						<p>
+							<button class="button" @click="sellAcc(v)">팔기</button>
+						</p>
+					</div>
+				</div>
+			</div>
+
+			<div id="shop" class="row" v-for="v in myInventory.equip">
+				<div class="column equip">
+					<div class="content">
+						<img :src="v.equipId.equipImg" :alt="v.equipName"style="width: 30%">
+						<h4>{{v.equipId.equipName}}</h4>
+						<p>price : {{v.equipId.equipPrice*0.6}}</p>
+						<p>
+							<button class="button" @click="sellEquip(v)">팔기</button>
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+</body>
+</html>

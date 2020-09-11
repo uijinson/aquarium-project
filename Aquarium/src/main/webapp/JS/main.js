@@ -197,11 +197,18 @@ function init() {
 
 	// Add the canvas to the document
 	renderer.domElement.style.backgroundColor = '#D6F1FF'; // easier to see
-	document.body.appendChild(renderer.domElement);
-
+	var winSize = document.body.appendChild(renderer.domElement);////////////////////
+	//////////////////////////////winSize.height="1000px";
 	// Track mouse position so we know where to shoot
 	document.addEventListener('mousemove', onDocumentMouseMove, false);
-
+	window.addEventListener('resize',function(){
+		var width = window.innerWidth;
+		var height = window.innerHeight;
+		renderer.setSize(width,height);
+		loadingScreen.camera.aspect = width/height;
+		loadingScreen.camera.updateProjectionMatrix();
+	});
+	///////////////////////////////////////////////////////////
 	// Shoot on click
 	$(document).click(function (e) {
 		e.preventDefault;
@@ -210,11 +217,11 @@ function init() {
 		}
 	});
 
-	// Display HUD
+	//Display HUD
 	$('body').append('<canvas id="radar" width="400" height="330"></canvas>');
 	$('body').append('<div id="hud"><p>Health: <span id="health">100</span><br />money: <span id="money">0</span></p></div>');
 	
-	// Set up "hurt" flash
+	//Set up "hurt" flash
 	$('body').append('<div id="hurt"></div>');
 	$('#hurt').css({ width: WIDTH, height: HEIGHT, });
 }
@@ -309,6 +316,9 @@ function render() {
 			scene.remove(a);
 			kills++;
 			$('#money').html(kills * 100);
+			console.log(app.money);
+			app.money=app.money+=100;
+			app.saveM();
 			addesetupENEMMY();
 		}
 		// Move esetupENEMMY
@@ -623,19 +633,19 @@ function onDocumentMouseMove(e) {
 }
 
 // Handle window resizing
-$(window).resize(function () {
-	WIDTH = window.innerWidth;
-	HEIGHT = window.innerHeight;
-	ASPECT = WIDTH / HEIGHT;
-	if (cam) {
-		cam.aspect = ASPECT;
-		cam.updateProjectionMatrix();
-	}
-	if (renderer) {
-		renderer.setSize(WIDTH, HEIGHT);
-	}
-	$('#intro, #hurt').css({ width: WIDTH, height: HEIGHT, });
-});
+// $(window).resize(function () {
+// 	WIDTH = window.innerWidth;
+// 	HEIGHT = window.innerHeight;
+// 	ASPECT = WIDTH / HEIGHT;
+// 	if (cam) {
+// 		cam.aspect = ASPECT;
+// 		cam.updateProjectionMatrix();
+// 	}
+// 	if (renderer) {
+// 		renderer.setSize(WIDTH, HEIGHT);
+// 	}
+// 	$('#intro, #hurt').css({ width: WIDTH, height: HEIGHT, });
+// });
 
 // Stop moving around when the window is unfocused (keeps my sanity!)
 $(window).focus(function () {

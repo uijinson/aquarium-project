@@ -16,8 +16,8 @@ import kr.pe.aqua.exception.NotFoundException;
 import kr.pe.aqua.model.Equipment;
 import kr.pe.aqua.model.EquipmentRepository;
 
-@RestController 
-@Api(value="EquipController specification v1")
+@RestController
+@Api(value = "EquipController specification v1")
 @RequestMapping("/api")
 public class EquipController {
 	private final EquipmentRepository repository;
@@ -37,33 +37,35 @@ public class EquipController {
 	@ApiOperation(value = "newEquip() 메소드 사용", notes = "새로운 장비 추가")
 	@GetMapping("/newEquip")
 	public Equipment newEquip(@ApiParam(value = "장비의 이름을 입력하세요.", required = true) @RequestParam String equipName,
-			@ApiParam(value = "장비의 설명을 입력하세요.", required = true) @RequestParam String equipExplain,
-			@ApiParam(value = "장비의 가격을 입력하세요.", required = true) @RequestParam int equipPrice,
-			@ApiParam(value = "장비의 EquipImg을 입력하세요.", required = false) @RequestParam String equipImg,
-			@ApiParam(value = "장비의 EquipSrc을 입력하세요.", required = false) @RequestParam String equipSrc) {
-		Equipment newEquip = Equipment.builder().equipName(equipName).equipExplain(equipExplain).equipPrice(equipPrice)
-				.equipImg(equipImg).equipSrc(equipSrc).build();
+							@ApiParam(value = "장비의 설명을 입력하세요.", required = true) @RequestParam String equipExplain,
+							@ApiParam(value = "장비의 가격을 입력하세요.", required = true) @RequestParam int equipPrice,
+							@ApiParam(value = "장비의 EquipImg을 입력하세요.", required = false) @RequestParam String equipImg,
+							@ApiParam(value = "장비의 EquipSrc을 입력하세요.", required = false) @RequestParam String equipSrc) {
+		
+		Equipment newEquip = Equipment.builder().equipName(equipName).equipExplain(equipExplain).equipPrice(equipPrice).equipImg(equipImg).equipSrc(equipSrc).build();
+		
 		return repository.save(newEquip);
 	}
-	
-	//장비 한 개 검색
+
+	// 장비 한 개 검색
 	@ApiOperation(value = "oneEquip() 메소드 사용", notes = "악세사리 한 개 검색")
 	@GetMapping("/allEquipments/{equipId}")
-	public Equipment oneEquip(@ApiParam(value = "장비 번호", required=true) @RequestParam Long equipId) {
+	public Equipment oneEquip(@ApiParam(value = "장비 번호", required = true) @RequestParam Long equipId) {
 		return repository.findById(equipId).orElseThrow(() -> new NotFoundException(equipId));
 	}
-	
-	@ApiOperation(value = "update6Equip() 메소드 사용", notes = "새로운 장비 추가")
+
+	// 장비 수정
+	@ApiOperation(value = "updateEquip() 메소드 사용", notes = "새로운 장비 수정")
 	@GetMapping("/updateEquip/{equipId}")
 	public Optional<Object> updateEquip(@ApiParam(value = "장비의 번호을 입력하세요.", required = false) @RequestParam Long equipId,
-			@ApiParam(value = "장비의 이름을 입력하세요.", required = true) @RequestParam String equipName,
-			@ApiParam(value = "장비의 설명을 입력하세요.", required = true) @RequestParam String equipExplain,
-			@ApiParam(value = "장비의 가격을 입력하세요.", required = true) @RequestParam int equipPrice,
-			@ApiParam(value = "장비의 EquipImg을 입력하세요.", required = false) @RequestParam String equipImg,
-			@ApiParam(value = "장비의 EquipSrc을 입력하세요.", required = false) @RequestParam String equipSrc) {
-		Equipment newEquip = Equipment.builder().equipId(equipId).equipName(equipName).equipExplain(equipExplain).equipPrice(equipPrice)
-				.equipImg(equipImg).equipSrc(equipSrc).build();
-		return repository.findById(equipId).map(equip -> { 		
+										@ApiParam(value = "장비의 이름을 입력하세요.", required = true) @RequestParam String equipName,
+										@ApiParam(value = "장비의 설명을 입력하세요.", required = true) @RequestParam String equipExplain,
+										@ApiParam(value = "장비의 가격을 입력하세요.", required = true) @RequestParam int equipPrice,
+										@ApiParam(value = "장비의 EquipImg을 입력하세요.", required = false) @RequestParam String equipImg,
+										@ApiParam(value = "장비의 EquipSrc을 입력하세요.", required = false) @RequestParam String equipSrc) {
+
+		Equipment newEquip = Equipment.builder().equipId(equipId).equipName(equipName).equipExplain(equipExplain).equipPrice(equipPrice).equipImg(equipImg).equipSrc(equipSrc).build();
+		return repository.findById(equipId).map(equip -> {
 			equip.setEquipName(newEquip.getEquipName());
 			equip.setEquipExplain(newEquip.getEquipExplain());
 			equip.setEquipPrice(newEquip.getEquipPrice());
@@ -72,14 +74,12 @@ public class EquipController {
 			return repository.save(equip);
 		});
 	}
-	
-	//장비 삭제
-	@ApiOperation(value="deleteEquipment() 메소드 사용", notes="장비 삭제")
+
+	// 장비 삭제
+	@ApiOperation(value = "deleteEquipment() 메소드 사용", notes = "장비 삭제")
 	@DeleteMapping("deleteEquipment/{equipId}")
-	public void deleteEquipment(@ApiParam(value="장비 번호", required = true) @RequestParam Long equipId) {
+	public void deleteEquipment(@ApiParam(value = "장비 번호", required = true) @RequestParam Long equipId) {
 		repository.deleteById(equipId);
 	}
-	
-	
-	
+
 }
