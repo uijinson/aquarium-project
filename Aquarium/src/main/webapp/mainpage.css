@@ -69,20 +69,6 @@ a {
   
   top:-12px;left:-4px;
 }
-.nav-list li:hover:focus{   
-  height:12px; width:150px;
-  background-image:linear-gradient(90deg, transparent 5px, #C11900 0, #DF2A2A 11px, #991100 18px, transparent 0), 
-                   linear-gradient(0deg, #DB2F2F 1px, transparent 0, transparent 90%, #DB2F2F 0),
-                   linear-gradient(90deg, #DB2F2F 1px, transparent 0, transparent 99%, #DB2F2F 0), 
-                   linear-gradient(90deg, #B51700, #B51700);
-  
-
-  background-repeat:repeat-x;
-  background-position:0 0, 0 4px, 0 4px, 0 4px;
-  background-size:21px 4px, 1px 8px, 100% 9px, 4px 9px;
-  
-  top:-12px;left:-4px;
-}
 
 .button {
 	text-align:center;
@@ -107,7 +93,7 @@ a {
 .button.active {
   background-color: white;
   color: #002E59;
-  
+
 }
 .tab {
   display: block;
@@ -146,7 +132,7 @@ a {
   left: 0;
   width: 100%;
   height: 3px;
-  background: #7e5d99;
+  background: #6ab3c5;
   transform: scaleX(0);
   transform-origin: right;
   transition: transform 0.5s;
@@ -235,6 +221,31 @@ figure.snip1321.hover:after {
 }
 * {
   box-sizing: border-box;
+}
+.btn {
+  outline: none;
+  margin-left: 35px;
+  height: 35px;
+  text-align: center;
+  align-items: center;
+  width: 95px;
+  border-radius: 15px;
+  background: #fff;
+  border: 2px solid #73c7f5;
+  color: #73c7f5;
+  letter-spacing: 1px;
+  text-shadow: 0;
+  font-size: 12px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+.btn:hover {
+  color: white;
+  background: #73c7f5;
+}
+.btn:active {
+  letter-spacing: 2px;
 }
 
 
