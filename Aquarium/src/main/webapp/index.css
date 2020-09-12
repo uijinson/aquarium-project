@@ -21,7 +21,7 @@
 body {
 	align-items: center;
 	background-color: var(--white);
-	background: url("https://steemitimages.com/DQmPRvwV9gVMq8nojKyYnkNXjbWdiCJDeUtCdgBxKZt31Aw/image.png");
+	background: url("images/background.png");
 	background-attachment: fixed;
 	background-position: center;
 	background-repeat: no-repeat;
