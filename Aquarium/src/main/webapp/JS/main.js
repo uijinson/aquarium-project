@@ -29,37 +29,85 @@ var models = {
 		mesh: null,
 		castShadow: false
 	},
-	uzi: {
-		obj: "models/uziGold.obj",
-		mtl: "models/uziGold.mtl",
+	grass1: {
+		obj: "models/grass1.obj",
+		mtl: "models/grass1.mtl",
+		mesh: null,
+		castShadow: false
+	},
+	grass2: {
+		obj: "models/grass2.obj",
+		mtl: "models/grass2.mtl",
+		mesh: null,
+		castShadow: false
+	},
+	grass3: {
+		obj: "models/grass3.obj",
+		mtl: "models/grass3.mtl",
+		mesh: null,
+		castShadow: false
+	},
+	moai: {
+		obj: "models/moai.obj",
+		mtl: "models/moai.mtl",
+		mesh: null,
+		castShadow: false
+	},
+	nimo: {
+		obj: "models/nimo.obj",
+		mtl: "models/nimo.mtl",
+		mesh: null,
+		castShadow: false
+	},
+	starfish: {
+		obj: "models/starfish.obj",
+		mtl: "models/starfish.mtl",
+		mesh: null,
+		castShadow: false
+	},
+	turtle: {
+		obj: "models/turtle.obj",
+		mtl: "models/turtle.mtl",
+		mesh: null,
+		castShadow: false
+	},
+	fish_green: {
+		obj: "models/fish_green.obj",
+		mtl: "models/fish_green.mtl",
+		mesh: null,
+		castShadow: false
+	},
+	fish_yellow: {
+		obj: "models/fish_yellow.obj",
+		mtl: "models/fish_yellow.mtl",
 		mesh: null,
 		castShadow: false
 	},
 };
-var map = [ 
-	[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,1,1,1,1,1,1],
-	[1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,0,0,0,0,0,1], 
-	[1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,0,0,0,0,0,1], 
-	[1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,0,0,0,0,0,1], 
-	[1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,0,0,0,0,0,1], 
-	[1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,0,0,0,0,0,1], 
-	[1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,0,0,0,0,0,1], 
-	[1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,0,0,0,0,0,1], 
-	[1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,0,0,0,0,0,1], 
-	[1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,0,0,0,0,0,1], 
-	[1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,0,0,0,0,0,1], 
-	[1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,0,0,0,0,0,1], 
-	[1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,0,0,0,0,0,1], 
-	[1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,0,0,0,0,0,1], 
-	[1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,0,0,0,0,0,1], 
-	[1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,0,0,0,0,0,1], 
-	[1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,0,0,0,0,0,1], 
-	[1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,0,0,0,0,0,1], 
-	[1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,0,0,0,0,0,1], 
-	[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,1,1,1,1,1,1], 
+var map = [
+	[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+	[1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+	[1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+	[1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+	[1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+	[1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+	[1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+	[1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+	[1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+	[1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+	[1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+	[1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+	[1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+	[1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+	[1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+	[1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+	[1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+	[1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+	[1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+	[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
 ], mapW = map.length, mapH = map[0].length;
 
-// Semi-constants
+
 var WIDTH = window.innerWidth,
 	HEIGHT = window.innerHeight,
 	ASPECT = WIDTH / HEIGHT,
@@ -70,15 +118,9 @@ var WIDTH = window.innerWidth,
 	BULLETMOVESPEED = MOVESPEED * 5,
 	numenemmies = 5,
 	PROJECTILEDAMAGE = 20;
-// Global vars
 var t = THREE, scene, cam, renderer, controls, clock, projector, model, skin;
 var runAnim = true, mouse = { x: 0, y: 0 }, kills = 0, health = 100;
 var healthCube, lastHealthPickup = 0;
-/*
-var finder = new PF.AStarFinder({ // Defaults to Manhattan heuristic
-	allowDiagonal: true,
-}), grid = new PF.Grid(mapW, mapH, map);
-*/
 var loadingScreen = {
 	scene: new t.Scene(),
 	camera: new t.PerspectiveCamera(90, ASPECT, 1, 10000),
@@ -102,10 +144,10 @@ $(document).ready(function () {
 
 // Setup
 function init() {
-	clock = new t.Clock(); // Used in render() for controls.update()
-	projector = new t.Projector(); // Used in bullet projection
-	scene = new t.Scene(); // Holds all objects in the canvas
-	scene.fog = new t.FogExp2(0xD6F1FF, 0.0005); // color, density
+	clock = new t.Clock();
+	projector = new t.Projector();
+	scene = new t.Scene();
+	scene.fog = new t.FogExp2(0xD6F1FF, 0.0005);
 
 	loadingScreen.box.position.set(0, 0, 5);
 	loadingScreen.camera.lookAt(loadingScreen.box.position);
@@ -119,19 +161,18 @@ function init() {
 		RESOURCES_LOADED = true;
 		onResourcesLoaded();
 	};
-	// Set up camera
-	cam = new t.PerspectiveCamera(60, ASPECT, 1, 10000); // FOV, aspect, near, far
+
+	cam = new t.PerspectiveCamera(60, ASPECT, 1, 10000);
 	cam.position.y = UNITSIZE * .2;
 	scene.add(cam);
 
 
-	//
 
 	// Camera moves with mouse, flies around with WASD/arrow keys
 	controls = new t.FirstPersonControls(cam);
 	controls.movementSpeed = MOVESPEED;
 	controls.lookSpeed = LOOKSPEED;
-	controls.lookVertical = false; // Temporary solution; play on flat surfaces only
+	controls.lookVertical = false; 
 	controls.noFly = true;
 
 	// World objects
@@ -141,10 +182,40 @@ function init() {
 		meshes["orca1"] = models.orca.mesh.clone();
 		meshes["orca2"] = models.orca.mesh.clone();
 		meshes["pirateship"] = models.pirateship.mesh.clone();
+		meshes["pirateship2"] = models.pirateship.mesh.clone();
 		meshes["pineapple"] = models.pineapple.mesh.clone();
+		meshes["fish_green"] = models.fish_green.mesh.clone();
+		meshes["fish_green2"] = models.fish_green.mesh.clone();
+		meshes["fish_green3"] = models.fish_green.mesh.clone();
+		meshes["fish_yellow"] = models.fish_yellow.mesh.clone();
+		meshes["fish_yellow2"] = models.fish_yellow.mesh.clone();
+		meshes["fish_yellow3"] = models.fish_yellow.mesh.clone();
+		meshes["fish_yellow4"] = models.fish_yellow.mesh.clone();
+		meshes["moai"] = models.moai.mesh.clone();
+		meshes["nimo"] = models.nimo.mesh.clone();
 		meshes["octo"] = models.octo.mesh.clone();
+		meshes["octo2"] = models.octo.mesh.clone();
+		meshes["turtle"] = models.turtle.mesh.clone();
+		meshes["grass1"] = models.grass1.mesh.clone();
+		meshes["grass2"] = models.grass2.mesh.clone();
+		meshes["grass3"] = models.grass3.mesh.clone();
+		meshes["grass4"] = models.grass3.mesh.clone();
+		meshes["grass5"] = models.grass3.mesh.clone();
+		meshes["grass6"] = models.grass3.mesh.clone();
+		meshes["grass7"] = models.grass3.mesh.clone();
+		meshes["grass8"] = models.grass3.mesh.clone();
+		meshes["grass9"] = models.grass3.mesh.clone();
+		meshes["grass10"] = models.grass3.mesh.clone();
+		meshes["grass11"] = models.grass3.mesh.clone();
+		meshes["grass12"] = models.grass3.mesh.clone();
+		meshes["grass13"] = models.grass3.mesh.clone();
+		meshes["grass14"] = models.grass3.mesh.clone();
+		meshes["grass15"] = models.grass3.mesh.clone();
+		meshes["grass16"] = models.grass3.mesh.clone();
+		meshes["grass17"] = models.grass3.mesh.clone();
+		meshes["starfish"] = models.starfish.mesh.clone();
 		// Reposition individual meshes, then add meshes to scene
-
+		//fish
 		meshes["angerfish1"].position.set(-UNITSIZE, 25, -UNITSIZE);
 		meshes["angerfish1"].scale.set(0.5, 0.5, 0.5);
 		meshes["angerfish1"].rotation.set(Math.PI / 2, Math.PI, Math.PI / 2);
@@ -155,40 +226,159 @@ function init() {
 		meshes["angerfish2"].rotation.set(Math.PI / 2, Math.PI, Math.PI / 2);
 		scene.add(meshes["angerfish2"]);
 
-		meshes["octo"].position.set(UNITSIZE * 2, 25, -UNITSIZE * 2);
+		meshes["octo"].position.set(UNITSIZE * 2, 25, -UNITSIZE * 4);
 		meshes["octo"].scale.set(1, 1, 1);
 		meshes["octo"].rotation.set(Math.PI / 2, Math.PI, Math.PI / 2);
 		scene.add(meshes["octo"]);
+
+		meshes["octo2"].position.set(UNITSIZE * 2, 25, -UNITSIZE * 3);
+		meshes["octo2"].scale.set(1, 1, 1);
+		meshes["octo2"].rotation.set(Math.PI / 2, Math.PI, Math.PI / 2);
+		scene.add(meshes["octo2"]);
 
 		meshes["orca1"].position.set(UNITSIZE * 2, 25, UNITSIZE);
 		meshes["orca1"].scale.set(1, 1, 1);
 		meshes["orca1"].rotation.set(Math.PI / 2, Math.PI, Math.PI * 2);
 		scene.add(meshes["orca1"]);
 
-		meshes["orca2"].position.set(UNITSIZE * 2, 25, UNITSIZE * 3);
+		meshes["orca2"].position.set(-UNITSIZE * 2, 25, UNITSIZE * 3);
 		meshes["orca2"].scale.set(1, 1, 1);
 		meshes["orca2"].rotation.set(Math.PI / 2, Math.PI, Math.PI * 2);
 		scene.add(meshes["orca2"]);
 
-		meshes["pirateship"].position.set(UNITSIZE, 50, -UNITSIZE);
-		meshes["pirateship"].rotation.set(0, Math.PI, 0); // Rotate it to face the other way.
+		meshes["nimo"].position.set(-UNITSIZE * 3, 25, -UNITSIZE * 10);
+		meshes["nimo"].scale.set(2, 2, 2);
+		meshes["nimo"].rotation.set(Math.PI / 2, Math.PI, -Math.PI / 2);
+		scene.add(meshes["nimo"]);
+
+		meshes["fish_yellow"].position.set(400, 50, -400);
+		meshes["fish_yellow"].rotation.set(Math.PI * 1.5, 0, Math.PI);
+		meshes["fish_yellow"].scale.set(2, 2, 2); 
+		scene.add(meshes["fish_yellow"]);
+
+		meshes["fish_yellow2"].position.set(-400, 50, 400);
+		meshes["fish_yellow2"].rotation.set(Math.PI * 1.5, 0, Math.PI);
+		meshes["fish_yellow2"].scale.set(1, 1, 1); 
+		scene.add(meshes["fish_yellow2"]);
+
+		meshes["fish_yellow3"].position.set(400, 50, 400);
+		meshes["fish_yellow3"].rotation.set(Math.PI * 1.5, 0, Math.PI);
+		meshes["fish_yellow3"].scale.set(1, 1, 1); 
+		scene.add(meshes["fish_yellow3"]);
+
+		meshes["fish_yellow4"].position.set(-400, 50, -400);
+		meshes["fish_yellow4"].rotation.set(Math.PI * 1.5, 0, Math.PI);
+		meshes["fish_yellow4"].scale.set(2, 2, 2); 
+		scene.add(meshes["fish_yellow4"]);
+
+		//acc
+		meshes["fish_green"].position.set(550, 50, -550);
+		meshes["fish_green"].rotation.set(Math.PI / 2, Math.PI, Math.PI);
+		meshes["fish_green"].scale.set(1, 1, 1); 
+		scene.add(meshes["fish_green"]);
+
+		meshes["fish_green2"].position.set(-550, 50, -550);
+		meshes["fish_green2"].rotation.set(Math.PI / 2, Math.PI, Math.PI);
+		meshes["fish_green2"].scale.set(1, 1, 1); 
+		scene.add(meshes["fish_green2"]);
+
+		meshes["fish_green3"].position.set(550, 50, 550);
+		meshes["fish_green3"].rotation.set(Math.PI / 2, Math.PI, Math.PI);
+		meshes["fish_green3"].scale.set(1, 1, 1); 
+		scene.add(meshes["fish_green3"]);
+
+		meshes["turtle"].position.set(-600, 20, -1000);
+		meshes["turtle"].rotation.set(Math.PI / 2, Math.PI, 0);
+		meshes["turtle"].scale.set(1, 1, 1); 
+		scene.add(meshes["turtle"]);
+
+		meshes["moai"].position.set(-1000, -20, 800);
+		meshes["moai"].rotation.set(Math.PI / 2, Math.PI, Math.PI * 1.8);
+		meshes["moai"].scale.set(2, 2, 2); 
+		scene.add(meshes["moai"]);
+		meshes["pirateship"].position.set(1000, -5, UNITSIZE);
+		meshes["pirateship"].rotation.set(0, Math.PI, 0);
+		meshes["pirateship"].scale.set(100, 100, 100); 
 		scene.add(meshes["pirateship"]);
-
-
+		meshes["pirateship2"].position.set(-1200, -5, -UNITSIZE * 4);
+		meshes["pirateship2"].rotation.set(0, Math.PI * 2, 0);
+		meshes["pirateship2"].scale.set(100, 100, 100); 
+		scene.add(meshes["pirateship2"]);
+		meshes["starfish"].position.set(350, -5, 350);
+		meshes["starfish"].rotation.set(Math.PI * 1.5, 0, Math.PI);
+		meshes["starfish"].scale.set(2, 2, 2); 
+		scene.add(meshes["starfish"]);
+		meshes["grass1"].position.set(600, -5, -600);
+		meshes["grass1"].rotation.set(Math.PI / 2, Math.PI, Math.PI / 2);
+		meshes["grass1"].scale.set(1, 1, 1); 
+		scene.add(meshes["grass1"]);
+		meshes["grass2"].position.set(600, 0, -600);
+		meshes["grass2"].rotation.set(Math.PI / 2, Math.PI, Math.PI / 2);
+		meshes["grass2"].scale.set(1, 1, 1); 
+		scene.add(meshes["grass2"]);
+		meshes["grass3"].position.set(600, -5, -600);
+		meshes["grass3"].rotation.set(Math.PI / 2, Math.PI, Math.PI / 2);
+		meshes["grass3"].scale.set(1, 1, 1); 
+		scene.add(meshes["grass3"]);
+		meshes["grass4"].position.set(-600, -5, -200);
+		meshes["grass4"].rotation.set(Math.PI / 2, Math.PI, Math.PI / 2);
+		meshes["grass4"].scale.set(1, 1, 1); 
+		scene.add(meshes["grass4"]);
+		meshes["grass5"].position.set(600, -5, 100);
+		meshes["grass5"].rotation.set(Math.PI / 2, Math.PI, Math.PI / 2);
+		meshes["grass5"].scale.set(1, 1, 1); 
+		scene.add(meshes["grass5"]);
+		meshes["grass6"].position.set(300, -5, -400);
+		meshes["grass6"].rotation.set(Math.PI / 2, Math.PI, Math.PI / 2);
+		meshes["grass6"].scale.set(1, 1, 1); 
+		scene.add(meshes["grass6"]);
+		meshes["grass7"].position.set(300, -5, 800);
+		meshes["grass7"].rotation.set(Math.PI / 2, Math.PI, Math.PI / 2);
+		meshes["grass7"].scale.set(1, 1, 1); 
+		scene.add(meshes["grass7"]);
+		meshes["grass8"].position.set(-800, -5, -300);
+		meshes["grass8"].rotation.set(Math.PI / 2, Math.PI, Math.PI / 2);
+		meshes["grass8"].scale.set(1, 1, 1); 
+		scene.add(meshes["grass8"]);
+		meshes["grass9"].position.set(-500, -5, 600);
+		meshes["grass9"].rotation.set(Math.PI / 2, Math.PI, Math.PI / 2);
+		meshes["grass9"].scale.set(1, 1, 1); 
+		scene.add(meshes["grass9"]);
+		meshes["grass10"].position.set(-100, -5, 1000);
+		meshes["grass10"].rotation.set(Math.PI / 2, Math.PI, Math.PI / 2);
+		meshes["grass10"].scale.set(1, 1, 1); 
+		scene.add(meshes["grass10"]);
+		meshes["grass11"].position.set(100, -5, 100);
+		meshes["grass11"].rotation.set(Math.PI / 2, Math.PI, Math.PI / 2);
+		meshes["grass11"].scale.set(1, 1, 1); 
+		scene.add(meshes["grass11"]);
+		meshes["grass12"].position.set(600, -5, 500);
+		meshes["grass12"].rotation.set(Math.PI / 2, Math.PI, Math.PI / 2);
+		meshes["grass12"].scale.set(1, 1, 1); 
+		scene.add(meshes["grass12"]);
+		meshes["grass13"].position.set(800, -5, 300);
+		meshes["grass13"].rotation.set(Math.PI / 2, Math.PI, Math.PI / 2);
+		meshes["grass13"].scale.set(1, 1, 1); 
+		scene.add(meshes["grass13"]);
+		meshes["grass14"].position.set(400, -5, 200);
+		meshes["grass14"].rotation.set(Math.PI / 2, Math.PI, Math.PI / 2);
+		meshes["grass14"].scale.set(1, 1, 1); 
+		scene.add(meshes["grass14"]);
+		meshes["grass15"].position.set(300, -5, 900);
+		meshes["grass15"].rotation.set(Math.PI / 2, Math.PI, Math.PI / 2);
+		meshes["grass15"].scale.set(1, 1, 1); 
+		scene.add(meshes["grass15"]);
+		meshes["grass16"].position.set(1000, -5, 600);
+		meshes["grass16"].rotation.set(Math.PI / 2, Math.PI, Math.PI / 2);
+		meshes["grass16"].scale.set(1, 1, 1); 
+		scene.add(meshes["grass16"]);
 		meshes["pineapple"].position.set(0, -20, 500);
 		meshes["pineapple"].rotation.set(Math.PI / 2, Math.PI, Math.PI / 2);
-		meshes["pineapple"].scale.set(1, 1, 1) // Rotate it to face the other way.
+		meshes["pineapple"].scale.set(1, 1, 1) 
 		scene.add(meshes["pineapple"]);
-		
-
-		// player weapon
-		meshes["playerweapon"] = models.uzi.mesh.clone();
-		meshes["playerweapon"].position.set(0, 2, 0);
-		meshes["playerweapon"].scale.set(10, 10, 10);
-		scene.add(meshes["playerweapon"]);
 
 	}
-	setupScene(); 
+	setupScene();
 	setupENEMMY();
 
 	// Handle drawing as WebGL (faster than Canvas but less supported)
@@ -197,18 +387,11 @@ function init() {
 
 	// Add the canvas to the document
 	renderer.domElement.style.backgroundColor = '#D6F1FF'; // easier to see
-	var winSize = document.body.appendChild(renderer.domElement);////////////////////
-	//////////////////////////////winSize.height="1000px";
+	document.body.appendChild(renderer.domElement);
+
 	// Track mouse position so we know where to shoot
 	document.addEventListener('mousemove', onDocumentMouseMove, false);
-	window.addEventListener('resize',function(){
-		var width = window.innerWidth;
-		var height = window.innerHeight;
-		renderer.setSize(width,height);
-		loadingScreen.camera.aspect = width/height;
-		loadingScreen.camera.updateProjectionMatrix();
-	});
-	///////////////////////////////////////////////////////////
+
 	// Shoot on click
 	$(document).click(function (e) {
 		e.preventDefault;
@@ -217,11 +400,11 @@ function init() {
 		}
 	});
 
-	//Display HUD
+	// Display HUD
 	$('body').append('<canvas id="radar" width="400" height="330"></canvas>');
 	$('body').append('<div id="hud"><p>Health: <span id="health">100</span><br />money: <span id="money">0</span></p></div>');
-	
-	//Set up "hurt" flash
+
+	// Set up "hurt" flash
 	$('body').append('<div id="hurt"></div>');
 	$('#hurt').css({ width: WIDTH, height: HEIGHT, });
 }
@@ -232,6 +415,32 @@ function init() {
 function animate() {
 	if (runAnim) {
 		requestAnimationFrame(animate);
+
+		var time = Date.now() * 0.0005;
+		meshes["orca1"].rotation.y += 0.01;
+		meshes["orca1"].position.x = Math.cos(time * 0.3) * 1000;
+		meshes["orca1"].position.z = Math.sin(time * 0.6) * 300;
+		meshes["orca2"].rotation.z += 0.01;
+		meshes["orca2"].position.z = Math.cos(time * 0.3) * 200;
+		meshes["orca2"].position.x = Math.sin(time * 0.6) * 40;
+		meshes["octo"].rotation.z += 0.02;
+		meshes["octo"].position.z = Math.cos(time * 0.3) * 100;
+		meshes["octo"].position.x = Math.sin(time * 0.6) * 300;
+		meshes["octo2"].rotation.z += 0.02;
+		meshes["octo2"].position.z = Math.cos(time * 0.3) * 500;
+		meshes["octo2"].position.x = Math.sin(time * 0.6) * 500;
+		meshes["angerfish1"].rotation.z += 0.01;
+		meshes["angerfish1"].position.z = Math.cos(time * 0.3) * 700;
+		meshes["angerfish1"].position.x = Math.sin(time * 0.6) * 350;
+		meshes["angerfish2"].rotation.z += 0.01;
+		meshes["angerfish2"].position.z = Math.cos(time * 0.3) * 200;
+		meshes["angerfish2"].position.x = Math.sin(time * 0.6) * 20;
+		meshes["turtle"].rotation.z += 0.01;
+		meshes["turtle"].position.z = Math.sin(time * 0.2) * 400;
+		meshes["turtle"].position.x = Math.sin(time * 0.1) * 1000;
+		meshes["nimo"].rotation.x += 0.01;
+		meshes["nimo"].position.z = Math.cos(time * 0.3) * 10;
+		meshes["nimo"].position.x = Math.sin(time * 0.6) * 20;
 	}
 	render();
 }
@@ -242,23 +451,25 @@ function render() {
 	var enemmyspeed = delta * MOVESPEED;
 	controls.update(delta); // Move camera
 
-	// // Rotate the health cube
-	// healthcube.rotation.x += 0.004
-	// healthcube.rotation.y += 0.008;
-	// // Allow picking it up once per minute
-	// if (Date.now() > lastHealthPickup + 60000) {
-	// 	if (distance(cam.position.x, cam.position.z, healthcube.position.x, healthcube.position.z) < 15 && health != 100) {
-	// 		health = Math.min(health + 50, 100);
-	// 		$('#health').html(health);
-	// 		lastHealthPickup = Date.now();
-	// 	}
-	// 	healthcube.material.wireframe = false;
-	// }
-	// else {
-	// 	healthcube.material.wireframe = true;
-	// }
+	// Rotate the health cube
+	healthcube.rotation.x += 0.004
+	healthcube.rotation.y += 0.008;
+	// Allow picking it up once per minute
+	if (Date.now() > lastHealthPickup + 60000) {
+		if (distance(cam.position.x, cam.position.z, healthcube.position.x, healthcube.position.z) < 15 && health != 100) {
+			health = Math.min(health + 50, 100);
+			$('#health').html(health);
+			lastHealthPickup = Date.now();
+		}
+		healthcube.material.wireframe = false;
+	}
+	else {
+		healthcube.material.wireframe = true;
+	}
 
-	// Update bullets. Walk backwards through the list so we can remove items.
+
+
+	// Update bullets Walk backwards through the list so we can remove items.
 	for (var i = bullets.length - 1; i >= 0; i--) {
 		var b = bullets[i], p = b.position, d = b.ray.direction;
 		if (checkWallCollision(p)) {
@@ -273,7 +484,7 @@ function render() {
 			var v = a.geometry.vertices[0];
 			var c = a.position;
 			var x = Math.abs(v.x), z = Math.abs(v.z);
-		
+
 			if (p.x < c.x + x && p.x > c.x - x &&
 				p.z < c.z + z && p.z > c.z - z &&
 				b.owner != a) {
@@ -308,6 +519,7 @@ function render() {
 		}
 	}
 
+
 	// Update esetupENEMMY.
 	for (var i = enemmy.length - 1; i >= 0; i--) {
 		var a = enemmy[i];
@@ -316,9 +528,6 @@ function render() {
 			scene.remove(a);
 			kills++;
 			$('#money').html(kills * 100);
-			console.log(app.money);
-			app.money=app.money+=100;
-			app.saveM();
 			addesetupENEMMY();
 		}
 		// Move esetupENEMMY
@@ -341,7 +550,7 @@ function render() {
 			scene.remove(a);
 			addesetupENEMMY();
 		}
-		
+
 		var cc = getMapSector(cam.position);
 		if (Date.now() > a.lastShot + 750 && distance(c.x, c.z, cc.x, cc.z) < 2) {
 			createBullet(a);
@@ -360,7 +569,7 @@ function render() {
 		$('#intro').html('...GAME OVER...');
 		$('#intro').one('click', function () {
 			location = location;
-		
+
 		});
 	}
 }
@@ -504,21 +713,7 @@ function getesetupENEMMYpath(a) {
 	return path;
 }
 
-/**
- * Find a path from one grid cell to another.
- *
- * @param sX
- *   Starting grid x-coordinate.
- * @param sZ
- *   Starting grid z-coordinate.
- * @param eX
- *   Ending grid x-coordinate.
- * @param eZ
- *   Ending grid z-coordinate.
- * @returns
- *   An array of coordinates including the start and end positions representing
- *   the path from the starting cell to the ending cell.
- */
+
 function findesetupENEMMYpath(sX, sZ, eX, eZ) {
 	var backupGrid = grid.clone();
 	var path = finder.findPath(sX, sZ, eX, eZ, grid);
@@ -529,24 +724,14 @@ function findesetupENEMMYpath(sX, sZ, eX, eZ) {
 function distance(x1, y1, x2, y2) {
 	return Math.sqrt((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1));
 }
-//이함수 왜이러냐 원래 var x = Math.floor((v.x + UNITSIZE /2) / UNITSIZE + mapW/2);
-// var z = Math.floor((v.z + UNITSIZE /2) / UNITSIZE + mapW/2);
 
 function getMapSector(v) {
-	var x = Math.floor((v.x + UNITSIZE) / UNITSIZE + mapW / 2);
-	var z = Math.floor((v.z + UNITSIZE) / UNITSIZE + mapW / 2);
+	var x = Math.floor((v.x + UNITSIZE * 2) / UNITSIZE + mapW / 2);
+	var z = Math.floor((v.z + UNITSIZE * 2) / UNITSIZE + mapW / 2);
 	return { x: x, z: z };
 }
 
-/**
- * Check whether a Vector3 overlaps with a wall.
- *
- * @param v
- *   A THREE.Vector3 object representing a point in space.
- *   Passing cam.position is especially useful.
- * @returns {Boolean}
- *   true if the vector is inside a wall; false otherwise.
- */
+
 function checkWallCollision(v) {
 	var c = getMapSector(v);
 	return map[c.x][c.z] > 0;
@@ -592,7 +777,7 @@ function drawRadar() {
 		}
 	}
 }
-var bulletType=[]
+var bulletType = []
 var bullets = [];
 var sphereMaterial = new t.MeshBasicMaterial({ color: 0x333333 });
 var sphereGeo = new t.SphereGeometry(2, 6, 6);
@@ -633,19 +818,19 @@ function onDocumentMouseMove(e) {
 }
 
 // Handle window resizing
-// $(window).resize(function () {
-// 	WIDTH = window.innerWidth;
-// 	HEIGHT = window.innerHeight;
-// 	ASPECT = WIDTH / HEIGHT;
-// 	if (cam) {
-// 		cam.aspect = ASPECT;
-// 		cam.updateProjectionMatrix();
-// 	}
-// 	if (renderer) {
-// 		renderer.setSize(WIDTH, HEIGHT);
-// 	}
-// 	$('#intro, #hurt').css({ width: WIDTH, height: HEIGHT, });
-// });
+$(window).resize(function () {
+	WIDTH = window.innerWidth;
+	HEIGHT = window.innerHeight;
+	ASPECT = WIDTH / HEIGHT;
+	if (cam) {
+		cam.aspect = ASPECT;
+		cam.updateProjectionMatrix();
+	}
+	if (renderer) {
+		renderer.setSize(WIDTH, HEIGHT);
+	}
+	$('#intro, #hurt').css({ width: WIDTH, height: HEIGHT, });
+});
 
 // Stop moving around when the window is unfocused (keeps my sanity!)
 $(window).focus(function () {

@@ -346,3 +346,21 @@ var app = new Vue({
 		this.loadM();
 	}
 });
+
+$(document).ready(function () {
+	$(".tab").hide();
+	$("ul.nav-list li:first").addClass("active").show();
+	$(".tab:first").show();
+
+	$("ul.nav-list li").click(function () {
+		$("ul.nav-list li").removeClass("active");
+		$(this).addClass("active");
+		$(".tab").hide();
+
+		var activeTab = $(this).find("a").attr("href");
+		console.log(activeTab);
+		$(activeTab).fadeIn();
+		return false;
+	});
+});
+

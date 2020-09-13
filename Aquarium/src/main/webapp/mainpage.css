@@ -5,7 +5,7 @@
   height:70%;
   width: 100%;
 }
-/*레고레고레고레고*/
+
 @import url('https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap');
 body{
   font-family: Verdana, Arial, Helvetica, sans-serif;
@@ -14,6 +14,10 @@ body{
   margin:0 auto;
   width:650px;
 }
+
+audio{
+  display: none;
+} 
 a { 
   color: white;
   text-decoration:none 
@@ -121,7 +125,7 @@ a {
   box-shadow: 0px 5px 15px rgba(0, 0, 0, .1);
 }
 
-/*inner btn filter 적용부분*/
+/*inner btn filter �쟻�슜遺�遺�*/
 .kkk{
   display: inline-flex;
   flex-direction: row;
@@ -159,7 +163,7 @@ a {
   transform-origin: left;
 }
 
-/* 상품그리드부분*/
+/* �긽�뭹洹몃━�뱶遺�遺�*/
 @import url(https://fonts.googleapis.com/css?family=Raleway:400,500,800);
 figure.snip1321 {
   font-family: 'Raleway', Arial, sans-serif;

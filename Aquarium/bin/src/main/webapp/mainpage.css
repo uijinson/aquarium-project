@@ -5,72 +5,259 @@
   height:70%;
   width: 100%;
 }
-body {
-  background-color: #f1f1f1;
-  padding: 20px;
-  font-family: Arial;
+/*레고레고레고레고*/
+@import url('https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap');
+body{
+  font-family: Verdana, Arial, Helvetica, sans-serif;
+}
+.container{
+  margin:0 auto;
+  width:650px;
+}
+a { 
+  color: white;
+  text-decoration:none 
+} 
+
+.nav-list{
+  list-style:none;
+  font-size: 18px;
+  padding:0; 
+  margin:0;
 }
 
-/* Center website */
-
-h1 {
-  font-size: 50px;
-  word-break: break-all;
-}
-
-
-/* Add padding BETWEEN each column */
-.row > .column {
-  padding: 8px;
-}
-
-/* Create three equal columns that floats next to each other */
-.column {
-  float: left;
-  width: 25%;
-  display: none; /* Hide all elements by default */
-}
-
-/* Clear floats after rows */ 
-img{
-	
-}
-
-/* Content */
-.content {
-  background-color: white;
+.nav-list li{
+  display:inline-block;
+  position:relative;
+  width:145px;
+  height:60px;
+  color:white;
   text-align:center;
-  padding: 5px;
-  width:100%;
-  height:340px;
+  
+  border:1px solid #002E59;
+  border-bottom:none;
+  
+  background-color:#00498B;
 }
-#div{
-height: 0px;
-width: 0px
+
+
+.nav-list li:before{
+  position:absolute;
+  content:'';
+ 
+  height:10px; 
+  width:140px;
+  top:-5px;
+  left:3px;
+  
+  background-image:linear-gradient(90deg, transparent 4px, #00498B 0, #00528E 8px, #003872 14px, #003872 17px, transparent 0);
+  background-repeat:repeat-x;
+  background-size:20px 4px;
 }
-/* The "show" class is added to the filtered elements */
-.show {
-  display: block;
+
+.nav-list li:hover::before{   
+  height:12px; width:150px;
+  background-image:linear-gradient(90deg, transparent 5px, #C11900 0, #DF2A2A 11px, #991100 18px, transparent 0), 
+                   linear-gradient(0deg, #DB2F2F 1px, transparent 0, transparent 90%, #DB2F2F 0),
+                   linear-gradient(90deg, #DB2F2F 1px, transparent 0, transparent 99%, #DB2F2F 0), 
+                   linear-gradient(90deg, #B51700, #B51700);
+  
+
+  background-repeat:repeat-x;
+  background-position:0 0, 0 4px, 0 4px, 0 4px;
+  background-size:21px 4px, 1px 8px, 100% 9px, 4px 9px;
+  
+  top:-12px;left:-4px;
 }
-.contentimg{
-width:100px;
-height:100px;
+.nav-list li:hover:focus{   
+  height:12px; width:150px;
+  background-image:linear-gradient(90deg, transparent 5px, #C11900 0, #DF2A2A 11px, #991100 18px, transparent 0), 
+                   linear-gradient(0deg, #DB2F2F 1px, transparent 0, transparent 90%, #DB2F2F 0),
+                   linear-gradient(90deg, #DB2F2F 1px, transparent 0, transparent 99%, #DB2F2F 0), 
+                   linear-gradient(90deg, #B51700, #B51700);
+  
+
+  background-repeat:repeat-x;
+  background-position:0 0, 0 4px, 0 4px, 0 4px;
+  background-size:21px 4px, 1px 8px, 100% 9px, 4px 9px;
+  
+  top:-12px;left:-4px;
 }
-/* Style the buttons */
-.btn {
+
+.button {
 	text-align:center;
   border: none;
   outline: none;
-  padding: 12px 16px;
+  padding: 19px 16px;
+  margin-right: 5px;
+  margin-left: 5px;
   background-color: white;
   cursor: pointer;
 }
 
-.btn:hover {
-  background-color: #ddd;
+.button:hover{
+  border:1px solid #85C9EE;
+  border-bottom:none;  
+                   
+  color:#002E59;
+  font-weight:bold;
+  background-color:white;
 }
 
-.btn.active {
-  background-color: #666;
-  color: white;
+.button.active {
+  background-color: white;
+  color: #002E59;
+  
+}
+.tab {
+  display: block;
+  overflow: scroll;
+  overflow-x: hidden;
+  background-color: white;
+  width: 700px;
+  height: 300px;
+  margin: auto;
+  border-radius: 10px;
+  box-shadow: 0px 5px 15px rgba(0, 0, 0, .1);
+}
+
+/*inner btn filter 적용부분*/
+.kkk{
+  display: inline-flex;
+  flex-direction: row;
+  align-items: center;
+  color: #1b1c1f;
+  padding-left: 10px;
+}
+.inner-btn{
+  position: relative;
+  display: block;
+  padding: 4px 25px;
+  font-family: Lato, sans-serif;
+  color: #b9dae2;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: 0.5s;
+}
+.inner-btn::after {
+  position: absolute;
+  content: "";
+  top: 100%;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: #7e5d99;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.5s;
+}
+.inner-btn:hover {
+  color: #728b8d;
+}
+.inner-btn:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+/* 상품그리드부분*/
+@import url(https://fonts.googleapis.com/css?family=Raleway:400,500,800);
+figure.snip1321 {
+  font-family: 'Raleway', Arial, sans-serif;
+  position: relative;
+  overflow: hidden;
+  margin: 0px;
+  height: 200px;
+  width: 200px;
+  color: #000000;
+  text-align: center;
+  -webkit-perspective: 50em;
+  perspective: 50em;
+}
+figure.snip1321 * {
+  display: grid;
+  -webkit-box-sizing: padding-box;
+  box-sizing: padding-box;
+  -webkit-transition: all 0.2s ease-out;
+  transition: all 0.2s ease-out;
+}
+figure.snip1321 img {
+  max-width: 100%;
+  vertical-align: top;
+}
+figure.snip1321 figcaption {
+  top: 50%;
+  left: 20px;
+  right: 20px;
+  position: absolute;
+  opacity: 0;
+  z-index: 1;
+}
+
+figure.snip1321 h4 {
+  font-weight: 400;
+  text-transform: capitalize;
+  position: absolute;
+  top:80%;left:50%;
+  transform: translate(-50%, -50%); 
+}
+figure.snip1321:after {
+  background-color: #b0ddf5;
+  position: absolute;
+  content: "";
+  display: block;
+  top: 5px;
+  left: 5px;
+  right: 5px;
+  bottom: 5px;
+  -webkit-transition: all 0.4s ease-in-out;
+  transition: all 0.4s ease-in-out;
+  -webkit-transform: rotateX(-90deg);
+  transform: rotateX(-90deg);
+  -webkit-transform-origin: 50% 50%;
+  -ms-transform-origin: 50% 50%;
+  transform-origin: 50% 50%;
+  opacity: 0;
+}
+
+figure.snip1321:hover figcaption,
+figure.snip1321.hover figcaption {
+  -webkit-transform: translateY(-50%);
+  transform: translateY(-50%);
+  opacity: 1;
+  -webkit-transition-delay: 0.2s;
+  transition-delay: 0.2s;
+}
+figure.snip1321:hover:after,
+figure.snip1321.hover:after {
+  -webkit-transform: rotateX(0);
+  transform: rotateX(0);
+  opacity: 0.9;
+}
+* {
+  box-sizing: border-box;
+}
+
+
+body {
+  background-color: #111220;
+  padding: 20px;
+  font-family: Arial;
+  -ms-overflow-style: none;
+}
+::-webkit-scrollbar { display: none; }
+
+.row > .column {
+  padding: 8px;
+  margin-left:22px;
+  margin-right: 23px;
+}
+
+.column {
+  float: left;
+  width: 25%;
+  display: none;
+}
+
+.show {
+  display: block;
 }
