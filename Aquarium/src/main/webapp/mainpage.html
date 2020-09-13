@@ -63,7 +63,7 @@
 							<figcaption>
 								<h5>{{v.fishExplain}}</h5>
 								<h3>$ {{v.fishPrice}}</h3>
-								<button class="button" @click="buyFish(v)">구입</button>
+								<button class="btn" @click="buyFish(v)">구입</button>
 							</figcaption>
 						</figure>
 					</div>
@@ -73,9 +73,9 @@
 						<figure class="snip1321"><img :src="v.accImg" />
 							<h4>- {{v.accName}} -</h4>
 							<figcaption>
-								<h4>{{v.accExplain}}</h4>
+								<h5>{{v.accExplain}}</h5>
 								<h3>$ {{v.accPrice}}</h3>
-								<button class="button" @click="buyAcc(v)">구입</button>
+								<button class="btn" @click="buyAcc(v)">구입</button>
 							</figcaption>
 						</figure>
 					</div>
@@ -86,8 +86,8 @@
 							<h4>- {{v.equipName}} -</h4>
 							<figcaption>
 								<h5>{{v.equipExplain}}</h5>
-								<h3>$ {{v.accPrice}}</h3>
-								<button class="button" @click="buyEquip(v)">구입</button>
+								<h3>$ {{v.equipPrice}}</h3>
+								<button class="btn" @click="buyEquip(v)">구입</button>
 							</figcaption>
 						</figure>
 					</div>
@@ -111,7 +111,7 @@
 						<figcaption>
 							<h5>{{v.fishId.fishExplain}}</h5>
 							<h3>$ {{v.fishId.fishPrice*0.6}}</h3>
-							<button class="button" @click="sellFish(v)"> 팔기</button>
+							<button class="btn" @click="sellFish(v)"> 팔기</button>
 						</figcaption>
 					</figure>
 				</div>
@@ -123,7 +123,7 @@
 						<figcaption>
 							<h5>{{v.accId.accExplain}}</h5>
 							<h3>$ {{v.accId.accPrice*0.6}}</h3>
-							<button class="button" @click="sellAcc(v)"> 팔기</button>
+							<button class="btn" @click="sellAcc(v)"> 팔기</button>
 						</figcaption>
 					</figure>
 				</div>
@@ -135,7 +135,7 @@
 						<figcaption>
 							<h5>{{v.equipId.equipExplain}}</h5>
 							<h3>$ {{v.equipId.equipPrice*0.6}}</h3>
-							<button class="button" @click="sellEquip(v)"> 팔기</button>
+							<button class="btn" @click="sellEquip(v)"> 팔기</button>
 						</figcaption>
 					</figure>
 				</div>

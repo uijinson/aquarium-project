@@ -43,8 +43,10 @@ public class LoadDataBase {
 	@Bean
 	public CommandLineRunner FishinItDatabase(FishRepository repository) {
 		return args -> {
-			log.info("Preloading " + repository.save(Fish.builder().fishName("turtle").fishExplain("귀여운 거북이").fishImg("/img/fish/turtle.jpg").fishPrice(300).build()));
-			log.info("Preloading " + repository.save(Fish.builder().fishName("alligator").fishExplain("귀여운 악어").fishImg("/img/fish/alligator.jpg").fishPrice(600).build()));
+			log.info("Preloading " + repository.save(Fish.builder().fishName("turtle").fishExplain("꽃을 품은 거북이").fishImg("/img/fish/turtle.jpg").fishPrice(1000).build()));
+			log.info("Preloading " + repository.save(Fish.builder().fishName("crab").fishExplain("생각보다 엄청 빠른 꽃게").fishImg("/img/fish/crab.jpg").fishPrice(2000).build()));
+			log.info("Preloading " + repository.save(Fish.builder().fishName("shark").fishExplain("제일 사나운 상어").fishImg("/img/fish/shark.jpg").fishPrice(3000).build()));
+			log.info("Preloading " + repository.save(Fish.builder().fishName("alligator").fishExplain("다리 짧은 악어").fishImg("/img/fish/alligator.jpg").fishPrice(4000).build()));
 		};
 	}
 
@@ -52,9 +54,11 @@ public class LoadDataBase {
 	@Bean
 	public CommandLineRunner AccessoryInitDatabase(AccessoryRepository repository) {
 		return args -> {
-			log.info("Preloading " + repository.save(Accessory.builder().accName("sea plant").accExplain("sea plant1").accImg("/img/acc/acc1.jpg").accPrice(100).build()));
-			log.info("Preloading " + repository.save(Accessory.builder().accName("Mermaid").accExplain("Mermaid1").accImg("/img/acc/acc2.jpg").accPrice(200).build()));
-			log.info("Preloading " + repository.save(Accessory.builder().accName("SpongeBob").accExplain("SpongeBob1").accImg("/img/acc/acc3.jpg").accPrice(300).build()));
+			log.info("Preloading " + repository.save(Accessory.builder().accName("castle").accExplain("공주가 살 것 같은 성").accImg("/img/acc/castle.jpg").accPrice(7000).build()));
+			log.info("Preloading " + repository.save(Accessory.builder().accName("fence").accExplain("적 침입 방지 울타리").accImg("/img/acc/fence.jpg").accPrice(500).build()));
+			log.info("Preloading " + repository.save(Accessory.builder().accName("flower").accExplain("바다에서 피는 꽃").accImg("/img/acc/flower.jpg").accPrice(3000).build()));
+			log.info("Preloading " + repository.save(Accessory.builder().accName("seatree").accExplain("바다에서 자라는 나무").accImg("/img/acc/tree.jpg").accPrice(5000).build()));
+			log.info("Preloading " + repository.save(Accessory.builder().accName("seagrass").accExplain("의식주 공급하는 해초").accImg("/img/acc/grass.jpg").accPrice(4000).build()));
 		};
 	}
 
@@ -62,8 +66,8 @@ public class LoadDataBase {
 	@Bean
 	public CommandLineRunner EquipmentInitDatabase(EquipmentRepository repository) {
 		return args -> {
-			log.info("Preloading " + repository.save(Equipment.builder().equipName("gun").equipExplain("gun1").equipImg("/img/equip/gun1.jpg").equipPrice(100).build()));
-			log.info("Preloading " + repository.save(Equipment.builder().equipName("gun2").equipExplain("gun2").equipImg("/img/equip/gun2.jpg").equipPrice(300).build()));
+			log.info("Preloading " + repository.save(Equipment.builder().equipName("gun").equipExplain("강력한 총").equipImg("/img/equip/gun.jpg").equipPrice(10000).build()));
+			log.info("Preloading " + repository.save(Equipment.builder().equipName("arrow").equipExplain("덜 강력한 화살").equipImg("/img/equip/arrow.jpg").equipPrice(8000).build()));
 		};
 	}
 
